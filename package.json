@@ -1,0 +1,22 @@
+{
+  "name": "anthority",
+  "version": "1.0.0",
+  "description": "a game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CrociDB/anthority.git"
+  },
+  "author": "Bruno Croci",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CrociDB/anthority/issues"
+  },
+  "homepage": "https://github.com/CrociDB/anthority#readme",
+  "dependencies": {
+    "uglify-js": "^3.0.27"
+  }
+}

@@ -1,0 +1,71 @@
+body {
+    background-color: #2B2B2B;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    color: #DFE0E0;
+}
+
+/* Header */
+
+#header {
+    font-size: 30px;
+    background-color: #EE7147;
+    margin: 0;
+    margin-bottom: 10px;
+    overflow: hidden;
+    padding: 0;
+}
+
+#header div {
+    float: left;
+    margin: 15px;
+}
+
+#header div:last-child {
+    float: right;
+}
+
+/* Columns */
+
+#columns {
+    overflow: hidden;
+}
+
+.column {
+    width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+    #left {
+        float: left;
+        width: 25%;
+    }
+    
+    #center {
+        width: 45%;
+        display: inline-block;
+    }
+    
+    #right {
+        width: 30%;
+        float: right;
+    }
+}
+
+/* Widgets */
+
+.widget {
+    display: block;
+    background-color: #2F3439;
+    padding: 5px;
+}
+
+
+@media screen and (min-width: 768px) {
+    .widget {
+        margin-right: 10px;
+    }
+
+    .widget-clear {
+        margin-right: 0;    
+    }
+}

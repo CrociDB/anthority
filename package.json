@@ -15,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/CrociDB/anthority/issues"
   },
-  "homepage": "https://github.com/CrociDB/anthority#readme",
-  "dependencies": {
-    "uglify-js": "^3.0.27"
-  }
+  "homepage": "https://github.com/CrociDB/anthority#readme"
 }

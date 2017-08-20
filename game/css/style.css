@@ -8,7 +8,7 @@ body {
 
 #header {
     font-size: 20px;
-    background-color: #EE7147;
+    background-color: #369D8A;
     margin: 0;
     margin-bottom: 10px;
     overflow: hidden;
@@ -70,4 +70,22 @@ body {
     .widget-clear {
         margin-right: 0;    
     }
+}
+
+/* Buttons */
+
+.button {
+    display: block;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #EE7147;
+    color: #EEEEEE;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14pt;
+    margin-bottom: 10px;
+}
+
+.button:hover {
+    background-color: #369D8A;
 }

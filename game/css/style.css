@@ -86,6 +86,82 @@ body {
     margin-bottom: 10px;
 }
 
+.inline-button {
+    display: inline;
+}
+
 .button:hover {
     background-color: #369D8A;
+}
+
+/* Dialog */
+
+.hidden {
+    position: absolute;
+    visibility: hidden;
+}
+
+.dialog-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    background-color: #282626;
+    opacity: 0.8;
+}
+
+.dialog {
+    position: absolute;
+    display: block;
+    top: 30%;
+    bottom: 30%;
+    left: 10%;
+    right: 10%;
+    
+    min-width: 300px;
+    height: 200px;
+    
+    margin: auto;
+    border-radius: 5px;
+    
+    background-color: #2F3439;
+    padding-bottom: 35px; 
+}
+
+@media screen and (min-width: 768px) {
+    .dialog {
+        top: 30%;
+        bottom: 30%;
+        left: 30%;
+        right: 30%;
+        
+        width: 340px;
+        height: 150px;
+        
+        margin: auto;
+        border-radius: 5px;
+        
+        background-color: #2F3439;
+        padding-bottom: 35px; 
+    }
+}
+
+.dialog header {
+    padding: 10px;
+    font-size: 14pt;
+}
+
+.dialog section {
+    padding: 5px;
+    margin: 10px;
+    margin-bottom: 25px;
+    background-color: #EEEEEE;
+    color: #2F3439;
+    border-radius: 5px;
+}
+
+.dialog .button-container {
+    margin: 10px;
 }

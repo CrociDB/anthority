@@ -18,7 +18,7 @@
                 <section id="actions" class="widget">
                     <a href="#" id="btnScout" class="button">Find Food</a>
                     <a href="#" id="btnHatch" class="button">Hatch Eggs</a>
-                    <a href="#" id="btnMakeSpaces" class="button">Build Room</a>
+                    <a href="#" id="btnBuildRoom" class="button">Build Room</a>
                 </section>
             </div>
             <div id="center" class="column">
@@ -37,7 +37,23 @@
         </div>
     </div>
 
+    <!-- Dialog -->
+
+    <div id="dialogDiv" class="dialog-container hidden"></div>
+    <div id="dialogWindow" class="dialog hidden">
+        <header id="dialogTitle">Message</header>
+        <section id="dialogSection">
+            <p>Some things happened here.</p>
+        </section>
+        <div class="button-container">
+            <a href="javascript:dialog.onCancel();" id="dialogCancel" class="button inline-button">Cancel</a>
+            <a href="javascript:dialog.onOk();" id="dialogOk" class="button inline-button">Ok</a>
+        </div>
+    </div>
+
     <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/dialog.js"></script>
     <script src="js/game.js"></script>
 </body>
 </html>

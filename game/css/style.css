@@ -90,6 +90,10 @@ body {
     display: inline;
 }
 
+.small-button {
+    padding: 5px;
+}
+
 .button:hover {
     background-color: #369D8A;
 }
@@ -115,19 +119,39 @@ body {
 .dialog {
     position: absolute;
     display: block;
-    top: 30%;
-    bottom: 30%;
+    top: 10%;
+    bottom: 10%;
     left: 10%;
     right: 10%;
     
     min-width: 300px;
-    height: 200px;
+    height: 310px;
     
     margin: auto;
     border-radius: 5px;
     
     background-color: #2F3439;
     padding-bottom: 35px; 
+}
+
+.dialog header {
+    padding: 10px;
+    font-size: 14pt;
+}
+
+.dialog section {
+    height: 210px;
+    padding: 5px;
+    margin: 10px;
+    margin-bottom: 25px;
+    background-color: #EEEEEE;
+    color: #2F3439;
+    border-radius: 5px;
+    overflow-y: scroll;
+}
+
+.dialog .button-container {
+    margin: 10px;
 }
 
 @media screen and (min-width: 768px) {
@@ -137,8 +161,8 @@ body {
         left: 30%;
         right: 30%;
         
-        width: 340px;
-        height: 150px;
+        width: 450px;
+        height: 300px;
         
         margin: auto;
         border-radius: 5px;
@@ -146,22 +170,44 @@ body {
         background-color: #2F3439;
         padding-bottom: 35px; 
     }
+
+    .dialog section {
+        height: 200px;
+    }
 }
 
-.dialog header {
-    padding: 10px;
-    font-size: 14pt;
-}
+/* Input Range */
 
-.dialog section {
+.range {
+    background-color: #D0D3D2;
     padding: 5px;
-    margin: 10px;
-    margin-bottom: 25px;
-    background-color: #EEEEEE;
-    color: #2F3439;
     border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-.dialog .button-container {
-    margin: 10px;
+.range h1 {
+    font-size: 16px;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.range span {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 60px;
+}
+
+.range .range-controls {
+    margin-top: 13px;
+    float: right;
+}
+
+.range .button {
+    padding-left: 15px;
+    padding-right: 15px;
 }

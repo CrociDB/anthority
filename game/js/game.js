@@ -17,15 +17,17 @@ class Game {
     }
 
     findFood() {
-        createDialogOk("Find Food", "<p>How far?</p>", () => {});
+        showDialogOkRange("Find Food", "<p>How far?</p><p>You'll need... </p>", [
+            { t: "Distance", min: 5, max: 85, step: 5 },
+            { t: "Scouts", min: 1, max: 5 }], (v) => { console.log(v); }, false);
     }
     
     hatchEggs() {
-        createDialogOk("Hatch Eggs", "<p>How many eggs you want to hatch?</p>", () => {});
+        showDialogOk("Hatch Eggs", "<p>How many eggs you want to hatch?</p>", () => {});
     }
     
     buildRoom() {
-        createDialogOk("Build Room", "<p>You'll need X ants to build this room.</p>", () => {});
+        showDialogOk("Build Room", "<p>You'll need X ants to build this room.</p>", () => {});
     }
 
     play() {

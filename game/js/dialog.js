@@ -44,6 +44,7 @@ let dialog = {
     hide() { 
         this.bg.style = "visibility: hidden";
         this.dw.style = "visibility: hidden";
+        this.section.innerHTML = "";
         this.active = false;
 
         setTimeout(this.checkQueue.bind(this), 100);

@@ -147,7 +147,7 @@ body {
     background-color: #EEEEEE;
     color: #2F3439;
     border-radius: 5px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .dialog .button-container {

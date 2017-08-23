@@ -31,19 +31,20 @@ let dialog = {
 };
 
 const showDialogWidget = (title, section, widgets, okCallback, bottom = true) => {
-    let rhtml = "";
-    widgets.forEach(o => {
-        rhtml += o.getHTML();
-    });
+    let sections = [];
+    widgets.forEach(o => sections.push(o.elem));
     
-    section = bottom ? (section + rhtml) : (rhtml + section);
+    if (bottom) {
+        sections.unshift(cEl(section));
+    } else {
+        sections.push(cEl(section));
+    }
 
     if (dialog.active) {
-        dialog.dialogQueue.push({ title: title, section: section, okCallback: okCallback.bind(null, widgets) });
+        dialog.dialogQueue.push({ title: title, section: sections, okCallback: okCallback.bind(null, widgets) });
     } else {
-        createDialogOk(title, section, okCallback.bind(null, widgets));
+        createDialogOk(title, sections, okCallback.bind(null, widgets));
     }
-    widgets.forEach(r => r.init());
 };
 
 const showDialogOk = (title, section, okCallback) => {
@@ -56,7 +57,14 @@ const showDialogOk = (title, section, okCallback) => {
 
 const createDialogOk = (title, section, okCallback) => {
     dialog.title.innerHTML = title;
-    dialog.section.innerHTML = section;
+
+    if (typeof section === "string") {
+        dialog.section.innerHTML = section;
+    } else {
+        dialog.section.innerHTML = "";
+        section.forEach(s => dialog.section.appendChild(s));
+    }
+
     dialog.onOk = function () {
         dialog.hide();
         okCallback();

@@ -3,6 +3,7 @@ class Progress extends Widget{
         super();
         this.label = label;
         this.value = 0;
+        this.init();
     }
 
     getHTML() {
@@ -11,9 +12,10 @@ class Progress extends Widget{
     }
 
     init(container) {
+        this.elem = cEl(this.getHTML());
+
         this.container = container;
-        this.elem = qSel("#wprog" + this.index);
-        this.prog = qSel("#wprog" + this.index + " progress");
+        this.prog = this.elem.querySelector("progress");
         this.interval = setInterval(this.update.bind(this), 10);
     }
     
@@ -29,8 +31,8 @@ class Progress extends Widget{
     destroy() {
         clearInterval(this.interval);
         
-        if (this.container) {
-            this.container.removeChild(this.elem);
+        if (this.elem.parentNode) {
+            this.elem.parentNode.removeChild(this.elem);
         }
     }
 }

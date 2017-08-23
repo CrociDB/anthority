@@ -38,11 +38,10 @@ class Game {
 
         let progress = new Progress("Scouts");
         this.addProgress(progress);
-        progress.init();
     }
 
     addProgress(p) {
-        this.statusContainer.appendChild(cEl(p.getHTML()));
+        this.statusContainer.appendChild(p.elem);
     }
 
     play() {

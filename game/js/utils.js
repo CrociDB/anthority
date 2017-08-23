@@ -2,7 +2,7 @@ const gId = t => document.getElementById(t);
 const qSel = t => document.querySelector(t);
 const qSelA = t => document.querySelectorAll(t);
 const cEl = s => {
-    var template = document.createElement("template");
+    let template = document.createElement("template");
     template.innerHTML = s;
     return template.content.firstChild;
 };

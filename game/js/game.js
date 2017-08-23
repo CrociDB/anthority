@@ -11,7 +11,7 @@ class Game {
         this.actionHatchEggs = gId("btnHatch");
         this.actionBuildRoom = gId("btnBuildRoom");
 
-        this.statusContainer = qSel("#status > div");
+        this.statusContainer = qSel("#status ul");
     
         this.actionFindFood.onclick = this.findFood.bind(this);
         this.actionHatchEggs.onclick = this.hatchEggs.bind(this);
@@ -20,8 +20,8 @@ class Game {
 
     findFood() {
         showDialogWidget("Find Food", "<p>How far?</p><p>You'll need... </p>", [
-            new Range(0, 5, 85, 5, "Distance"),
-            new Range(1, 1, 5, 1, "Scouts")], this.sendScouts.bind(this), false);
+            new Range(5, 85, 5, "Distance"),
+            new Range(1, 5, 1, "Scouts")], this.sendScouts.bind(this), false);
     }
     
     hatchEggs() {
@@ -36,10 +36,17 @@ class Game {
         let dist = values[0].val;
         let ants = values[1].val;
 
-        // let progress = new 
+        let progress = new Progress("Scouts");
+        this.addProgress(progress);
+        progress.init();
+    }
+
+    addProgress(p) {
+        this.statusContainer.appendChild(cEl(p.getHTML()));
     }
 
     play() {
+
     }
 }
 

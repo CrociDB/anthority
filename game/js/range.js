@@ -1,6 +1,6 @@
 class Range extends Widget{
-    constructor(index, min, max, step, label) {
-        super(index);
+    constructor(min, max, step, label) {
+        super();
         this.min = min;
         this.max = max;
         this.val = Math.round((min + max) / 2);

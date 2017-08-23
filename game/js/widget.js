@@ -1,6 +1,7 @@
+let WIDGET_COUNT = 0;
 class Widget {
-    constructor(index) {
-        this.index = index;
+    constructor() {
+        this.index = WIDGET_COUNT++;
     }
 
     getHTML() {

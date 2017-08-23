@@ -211,3 +211,45 @@ body {
     padding-left: 15px;
     padding-right: 15px;
 }
+
+/* Progress */
+
+ul {
+    padding: 0;
+}
+
+.wprogress p {
+    margin: 0 0 5px 0;
+    padding: 0;
+}
+
+.wprogress {
+    background-color: #464C53;
+    list-style-type: none;
+    padding: 10px;
+    margin: 0px;
+    margin-bottom: 10px;
+
+    border-radius: 5px;
+}
+
+.wprogress:last-child {
+    margin: 0;
+}
+
+
+progress::-moz-progress-bar { background: #EE7147; }
+progress::-webkit-progress-bar { background: #D0D3D2; }
+progress::-webkit-progress-value { background: #EE7147; }
+progress {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 20px;
+    /* margin-bottom: 25px; */
+
+    border-radius: 5px;
+
+    background-color: #D0D3D2;
+}

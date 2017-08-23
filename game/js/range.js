@@ -3,7 +3,7 @@ class Range extends Widget{
         super();
         this.min = min;
         this.max = max;
-        this.val = Math.round((min + max) / 2);
+        this.val = min;
         this.step = step;
         this.label = label;
         this.init();

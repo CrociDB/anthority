@@ -11,22 +11,32 @@ class Game {
         this.actionHatchEggs = gId("btnHatch");
         this.actionBuildRoom = gId("btnBuildRoom");
 
+        this.labelEnergy = gId("energy");
+        this.labelAnts = gId("ants");
+
         this.statusContainer = qSel("#status ul");
     
         this.actionFindFood.onclick = this.doFindFood.bind(this);
         this.actionHatchEggs.onclick = this.doHatchEggs.bind(this);
         this.actionBuildRoom.onclick = this.doBuildRoom.bind(this);
+
+        this.updateUI();
+    }
+
+    updateUI() {
+        this.labelEnergy.innerText = this.energy;
+        this.labelAnts.innerText = this.ants;
     }
 
     doFindFood() {
         showDialogWidget("Find Food", "<p>How far?</p><p>You'll need... </p>", [
             new Range(5, 85, 5, "Distance"),
-            new Range(1, 5, 1, "Scouts")], this.sendScouts.bind(this), false);
+            new Range(1, this.ants, 1, "Scouts")], this.sendScouts.bind(this), false);
     }
     
     doHatchEggs() {
-        showDialogWidget("Hatch Eggs", "<p>How many eggs you want to hatch?</p>", [
-            new Range(1, 20, 1, "Eggs")], this.hatchEggs.bind(this));
+        showDialogWidget("Hatch Eggs", "<div><p>How many eggs you want to hatch?</p><p><strong>Remember:</strong> you'll need one ant per egg!</p></div>", [
+            new Range(1, this.ants, 1, "Eggs")], this.hatchEggs.bind(this));
     }
     
     doBuildRoom() {
@@ -39,6 +49,9 @@ class Game {
 
         let progress = new Progress("Scouts");
         this.addProgress(progress);
+
+        this.ants -= ants;
+        this.updateUI();
     }
 
     hatchEggs(values) {
@@ -46,6 +59,9 @@ class Game {
 
         let progress = new Progress("Hatching Eggs");
         this.addProgress(progress);
+
+        this.ants -= eggs;
+        this.updateUI();
     }
 
     addProgress(p) {

@@ -10,6 +10,8 @@ class Game {
         this.actionFindFood = gId("btnScout");
         this.actionHatchEggs = gId("btnHatch");
         this.actionBuildRoom = gId("btnBuildRoom");
+
+        this.statusContainer = qSel("#status > div");
     
         this.actionFindFood.onclick = this.findFood.bind(this);
         this.actionHatchEggs.onclick = this.hatchEggs.bind(this);
@@ -17,9 +19,9 @@ class Game {
     }
 
     findFood() {
-        showDialogOkRange("Find Food", "<p>How far?</p><p>You'll need... </p>", [
-            { t: "Distance", min: 5, max: 85, step: 5 },
-            { t: "Scouts", min: 1, max: 5 }], (v) => { console.log(v); }, false);
+        showDialogWidget("Find Food", "<p>How far?</p><p>You'll need... </p>", [
+            new Range(0, 5, 85, 5, "Distance"),
+            new Range(1, 1, 5, 1, "Scouts")], this.sendScouts.bind(this), false);
     }
     
     hatchEggs() {
@@ -28,6 +30,13 @@ class Game {
     
     buildRoom() {
         showDialogOk("Build Room", "<p>You'll need X ants to build this room.</p>", () => {});
+    }
+
+    sendScouts(values) {
+        let dist = values[0].val;
+        let ants = values[1].val;
+
+        // let progress = new 
     }
 
     play() {

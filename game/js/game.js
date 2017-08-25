@@ -47,7 +47,7 @@ class Game {
         let dist = values[0].val;
         let ants = values[1].val;
 
-        let progress = new Progress("Scouts");
+        let progress = new Progress("Scouts", 10);
         this.addProgress(progress);
 
         this.ants -= ants;

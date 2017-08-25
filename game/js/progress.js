@@ -1,13 +1,14 @@
 class Progress extends Widget{
-    constructor(label) {
+    constructor(label, time) {
         super();
         this.label = label;
+        this.time = time;
         this.value = 0;
         this.init();
     }
 
     getHTML() {
-        let str = "<li id=\"wprog%1\" class=\"wprogress\"><p>%2</p><progress value=\"0\" max=\"100\"></progress></li>";
+        let str = "<li id=\"wprog%1\" class=\"wprogress\"><p>%2</p><progress value=\"0\" max=\"1000\"></progress></li>";
         return str.replace("%1", this.index).replace("%2", this.label);
     }
 
@@ -20,10 +21,10 @@ class Progress extends Widget{
     }
     
     update() {
-        this.value += 0.05;
+        this.value += 10 / this.time;
         this.prog.value = this.value;
 
-        if (this.value > 100) {
+        if (this.value > 1000) {
             this.destroy();
         }
     }

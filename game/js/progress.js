@@ -22,7 +22,7 @@ class Progress extends Widget{
     }
     
     update() {
-        this.value += 10 / this.time;
+        this.value += 10 / this.time * TIME_SCALE;
         this.prog.value = this.value;
 
         if (this.value > 1000) {

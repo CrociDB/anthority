@@ -9,3 +9,5 @@ const cEl = s => {
 
 const fmt = (value, format) => { return (format + value).slice(-4); };
 const clamp =(val, min, max) => { return Math.min(Math.max(val, min), max); };
+
+const TIME_SCALE = 10.0;

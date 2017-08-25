@@ -30,7 +30,7 @@ class Game {
 
     doFindFood() {
         showDialogWidget("Find Food", "<p>How far?</p><p>You'll need... </p>", [
-            new Range(5, 85, 5, "Distance"),
+            new Range(5, 100, 5, "Distance"),
             new Range(1, this.ants, 1, "Scouts")], this.sendScouts.bind(this), false);
     }
     
@@ -44,10 +44,12 @@ class Game {
     }
 
     sendScouts(values) {
-        let dist = values[0].val;
-        let ants = values[1].val;
+        const dist = values[0].val;
+        const ants = values[1].val;
 
-        let progress = new Progress("Scouts", 10);
+        const time = 5 + (dist * 2.5);
+
+        let progress = new Progress("Scouts", time, this.evaluateScouts.bind(this, dist, ants));
         this.addProgress(progress);
 
         this.ants -= ants;
@@ -70,6 +72,11 @@ class Game {
 
     play() {
 
+    }
+
+    // Evaluation methods
+    evaluateScouts(dist, ants) {
+        console.log("HOHOHO", dist, ants);
     }
 }
 

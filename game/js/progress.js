@@ -1,9 +1,10 @@
 class Progress extends Widget{
-    constructor(label, time) {
+    constructor(label, time, callback) {
         super();
         this.label = label;
-        this.time = time;
+        this.time = time | 1;
         this.value = 0;
+        this.callback = callback;
         this.init();
     }
 
@@ -28,9 +29,13 @@ class Progress extends Widget{
             this.destroy();
         }
     }
-
+    
     destroy() {
         clearInterval(this.interval);
+        
+        if (this.callback) {
+            this.callback();
+        }
         
         if (this.elem.parentNode) {
             this.elem.parentNode.removeChild(this.elem);

@@ -154,6 +154,17 @@ body {
     margin: 10px;
 }
 
+.msghighlight {
+    background-color: white;
+    margin: 3px;
+    padding: 3px;
+    border-radius: 3px;
+}
+
+.msghighlight b {
+    color: #0D0037;
+}
+
 @media screen and (min-width: 768px) {
     .dialog {
         top: 30%;

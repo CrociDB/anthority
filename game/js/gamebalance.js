@@ -8,7 +8,7 @@ class GameBalance {
         let totaldist = dist + randdist;
 
         let places = PLACES.filter(p => p.d <= totaldist);
-        let place = randweight(places, p => p.d);
+        let place = randweightsqrd(places, p => p.d);
 
         let lostants = 0;
         if (randnum() < .03)

@@ -13,6 +13,7 @@ class Game {
         this.actionHatchEggs = gId("btnHatch");
         this.actionBuildRoom = gId("btnBuildRoom");
 
+        this.header = gId("header");
         this.labelEnergy = gId("energy");
         this.labelAnts = gId("ants");
 
@@ -28,6 +29,10 @@ class Game {
     updateUI() {
         this.labelEnergy.innerText = this.energy;
         this.labelAnts.innerText = this.ants;
+
+        this.header.classList.remove("hhighlight");
+        this.header.offsetWidth;
+        this.header.classList.add("hhighlight");
     }
 
     doFindFood() {

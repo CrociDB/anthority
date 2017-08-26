@@ -20,8 +20,13 @@ a, h1, span {
 
 /* Header */
 
+@keyframes headerhighlight {
+    0% { background-color: #369D8A; }
+    10% { background-color: #69B7A9; }
+    100% { background-color: #369D8A; }
+}
+
 #header {
-    font-size: 20px;
     background-color: #369D8A;
     margin: 0;
     margin-bottom: 10px;
@@ -31,8 +36,33 @@ a, h1, span {
     border-bottom: 5px solid #EE7147;
 }
 
+.hhighlight {
+    animation-name: headerhighlight;
+    animation-duration: 300ms;
+    animation-delay: 500ms;
+}
+
 #header div {
-    display: inline;
+    display: inline-block;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-right: 1px solid #58AE9E;
+}
+
+#header div:last-child {
+    border: 0;
+}
+
+#header div span {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+}
+
+#header div span:last-child {
+    font-size: 12px;
+    color: #B0F7EA;
 }
 
 /* Columns */

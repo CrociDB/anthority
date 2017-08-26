@@ -6,16 +6,16 @@ let dialog = {
     ok: gId("dialogOk"),
     cancel: gId("dialogCancel"),
     hide() { 
-        this.bg.style = "visibility: hidden";
-        this.dw.style = "visibility: hidden";
+        this.bg.classList.add("hidden");
+        this.dw.classList.add("hidden");
         this.section.innerHTML = "";
         this.active = false;
 
         setTimeout(this.checkQueue.bind(this), 100);
     },
     show() {
-        this.bg.style = "visibility: visible";
-        this.dw.style = "visibility: visible";
+        this.bg.classList.remove("hidden");
+        this.dw.classList.remove("hidden");
         this.active = true;
     },
     onOk: null,

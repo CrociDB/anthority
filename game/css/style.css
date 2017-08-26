@@ -74,6 +74,11 @@ body {
 
 /* Buttons */
 
+@keyframes hoveranim {
+    0%   {background-color: #EE7147;}
+    100% {background-color: #369D8A;}
+}
+
 .button {
     display: block;
     border-radius: 5px;
@@ -96,6 +101,8 @@ body {
 
 .button:hover {
     background-color: #369D8A;
+    animation-name: hoveranim;
+    animation-duration: 500ms;
 }
 
 /* Dialog */
@@ -119,6 +126,7 @@ body {
 .dialog {
     position: absolute;
     display: block;
+
     top: 10%;
     bottom: 10%;
     left: 10%;
@@ -234,8 +242,17 @@ ul {
     padding: 0;
 }
 
+@keyframes proganim {
+    0%   {background-color: #464C53;}
+    50% {background-color: #4E5560;}
+    100% {background-color: #464C53;}
+}
+
 .wprogress {
-    background-color: #464C53;
+    animation-name: proganim; 
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    /* background-color: #464C53; */
     list-style-type: none;
     padding: 10px;
     margin: 0px;
@@ -248,8 +265,7 @@ ul {
     margin: 0;
 }
 
-
-progress::-moz-progress-bar { background: #EE7147; }
+progress::-moz-progress-bar { background: #EE7147; }}
 progress::-webkit-progress-bar { background: #D0D3D2; }
 progress::-webkit-progress-value { background: #EE7147; }
 progress {

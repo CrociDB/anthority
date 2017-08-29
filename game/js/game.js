@@ -6,6 +6,7 @@ class Game {
         this.balance = new GameBalance();
 
         this.initUI();
+        this.initMap();
     }
     
     initUI() {
@@ -33,6 +34,11 @@ class Game {
         this.header.classList.remove("hhighlight");
         this.header.offsetWidth;
         this.header.classList.add("hhighlight");
+    }
+
+    initMap() {
+        this.map = new Map();
+        this.map.init(MAP, "mapcanvas");
     }
 
     doFindFood() {

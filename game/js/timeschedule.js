@@ -16,7 +16,7 @@ class TimeSchedule {
     }
 
     removeUpdateCallback(callback) {
-        this.updateCallbacks.splice(this.updateCallbacks.indexOf(callback));
+        this.updateCallbacks.splice(this.updateCallbacks.indexOf(callback), 1);
     }
     
     update() {

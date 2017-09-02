@@ -20,7 +20,8 @@ class Progress extends Widget{
         this.container = container;
         this.prog = this.elem.querySelector("progress");
         this.baseTime = this.scheduler.cycle;
-        this.scheduler.addUpdateCallback(this.update.bind(this));
+        this.uc = this.update.bind(this);
+        this.scheduler.addUpdateCallback(this.uc);
     }
     
     update() {
@@ -33,7 +34,7 @@ class Progress extends Widget{
     }
     
     destroy() {
-        this.scheduler.removeUpdateCallback(this.update.bind(this));
+        this.scheduler.removeUpdateCallback(this.uc);
         
         if (this.callback) {
             this.callback();

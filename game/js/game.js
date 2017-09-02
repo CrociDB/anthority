@@ -71,7 +71,7 @@ class Game {
         const dist = values[0].val;
         const ants = values[1].val;
 
-        const time = 5 + (dist * 1) / (ants);
+        const time = 1 + ((dist * .5) / (Math.log(ants) + 1));
 
         let progress = new Progress(this.time, "Scouts", time, this.evaluateScouts.bind(this, dist, ants));
         this.addProgress(progress);
@@ -118,9 +118,9 @@ class Game {
     }
 
 }
-
+let game = null;
 (function() {
-    let game = new Game();
+    game = new Game();
     game.play();
 })();
 

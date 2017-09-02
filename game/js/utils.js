@@ -12,7 +12,7 @@ const repltxt = (t, vs) => {
     return t;
 };
 
-const fmt = (value, format) => { return (format + value).slice(-4); };
+const fmt = (value, f) => { return (f + value).slice(-f.length); };
 const clamp = (val, min, max) => { return Math.min(Math.max(val, min), max); };
 
 const randnum = (v = 1) => Math.random() * v;
@@ -28,4 +28,6 @@ const randweight = (c, p) => {
 };
 const randweightsqrd = (c, p) => randweight(c, v => p(v) * p(v));
 
-const TIME_SCALE = 10.0;
+const TIME_SCALE = 10.0; // Every time unit should multiply this
+const TIME_PACE = 20; // This is hours by minute
+const TIME_INTERVAL = 32;

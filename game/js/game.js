@@ -2,8 +2,11 @@ class Game {
     constructor() {
         this.energy = 10;
         this.ants = 10;
+        this.defense = 1.0;
 
         this.balance = new GameBalance();
+        this.time = new TimeSchedule();
+        this.time.addUpdateCallback(this.timeUpdate.bind(this));
 
         this.initUI();
         this.initMap();
@@ -17,6 +20,9 @@ class Game {
         this.header = gId("header");
         this.labelEnergy = gId("energy");
         this.labelAnts = gId("ants");
+        this.labelDefense = gId("defense");
+        this.labelHour = gId("hour");
+        this.labelDay = gId("day");
 
         this.statusContainer = qSel("#status ul");
     
@@ -34,6 +40,11 @@ class Game {
         this.header.classList.remove("hhighlight");
         this.header.offsetWidth;
         this.header.classList.add("hhighlight");
+    }
+
+    timeUpdate() {
+        this.labelHour.innerText = fmt(this.time.hour, "00");
+        this.labelDay.innerText = this.time.day;
     }
 
     initMap() {
@@ -60,9 +71,9 @@ class Game {
         const dist = values[0].val;
         const ants = values[1].val;
 
-        const time = 5 + (dist * .2);
+        const time = 5 + (dist * 1) / (ants);
 
-        let progress = new Progress("Scouts", time, this.evaluateScouts.bind(this, dist, ants));
+        let progress = new Progress(this.time, "Scouts", time, this.evaluateScouts.bind(this, dist, ants));
         this.addProgress(progress);
 
         this.ants -= ants;
@@ -72,7 +83,7 @@ class Game {
     hatchEggs(values) {
         let eggs = values[0].val;
 
-        let progress = new Progress("Hatching Eggs");
+        let progress = new Progress(this.time, "Hatching Eggs");
         this.addProgress(progress);
 
         this.ants -= eggs;

@@ -1,6 +1,7 @@
 class Progress extends Widget{
-    constructor(label, time, callback) {
+    constructor(scheduler, label, time, callback) {
         super();
+        this.scheduler = scheduler;
         this.label = label;
         this.time = time | 1;
         this.value = 0;
@@ -18,11 +19,12 @@ class Progress extends Widget{
 
         this.container = container;
         this.prog = this.elem.querySelector("progress");
-        this.interval = setInterval(this.update.bind(this), 10);
+        this.baseTime = this.scheduler.cycle;
+        this.scheduler.addUpdateCallback(this.update.bind(this));
     }
     
     update() {
-        this.value += 10 / this.time * TIME_SCALE;
+        this.value = (this.scheduler.cycle - this.baseTime) * 1000 / this.time * this.scheduler.cpt;
         this.prog.value = this.value;
 
         if (this.value > 1000) {
@@ -31,7 +33,7 @@ class Progress extends Widget{
     }
     
     destroy() {
-        clearInterval(this.interval);
+        this.scheduler.removeUpdateCallback(this.update.bind(this));
         
         if (this.callback) {
             this.callback();

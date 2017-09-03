@@ -32,14 +32,22 @@ class Game {
 
         this.updateUI();
     }
-
+    
     updateUI() {
         this.labelEnergy.innerText = this.energy;
         this.labelAnts.innerText = this.ants;
-
+        
         this.header.classList.remove("hhighlight");
         this.header.offsetWidth;
         this.header.classList.add("hhighlight");
+    }
+
+    disableButton(elem) {
+        elem.classList.add("disabled");
+    }
+
+    enableButton(elem) {
+        elem.classList.remove("disabled");
     }
 
     timeUpdate() {
@@ -52,6 +60,7 @@ class Game {
         this.map.init(MAP, "mapcanvas");
     }
 
+    // Actions
     doFindFood() {
         showDialogWidget("Find Food", "<p>How far?</p><p>You'll need... </p>", [
             new Range(10, 100, 5, "Distance"),
@@ -67,6 +76,7 @@ class Game {
         showDialogOk("Build Room", "<p>You'll need X ants to build this room.</p>", () => {});
     }
 
+    // Create jobs
     sendScouts(values) {
         const dist = values[0].val;
         const ants = values[1].val;
@@ -83,38 +93,55 @@ class Game {
     hatchEggs(values) {
         let eggs = values[0].val;
 
-        let progress = new Progress(this.time, "Hatching Eggs");
+        const time = 48 + eggs / 2;
+
+        let progress = new Progress(this.time, "Hatching Eggs", time, this.evaluateEggs.bind(this, eggs));
         this.addProgress(progress);
+
+        this.disableButton(this.actionHatchEggs);
 
         this.ants -= eggs;
         this.updateUI();
     }
-
+    
     addProgress(p) {
         this.statusContainer.appendChild(p.elem);
     }
-
-    goGetFood(values) {
+    
+    play() {
         
     }
-
-    play() {
-
-    }
-
+    
     // Evaluation methods
     evaluateScouts(dist, ants) {
         let r = this.balance.evaluateScouts(dist, ants);
-
+        
         this.ants += r.ants;
-
+        
         showDialogWidget(
             "Scout Result", 
             repltxt(TEXTS.scoutFound, [r.ants, r.dist, r.source.n, r.source.e]),
             [new Range(1, this.ants, 1, "Ants")], 
             this.goGetFood.bind(this));
-
+        
         this.updateUI();
+    }
+
+    evaluateEggs(eggs) {
+        let r = this.balance.evaluateEggs(eggs);
+
+        console.log(r);
+
+        showDialogOk("Hatch Eggs", repltxt(TEXTS.hatchResults, [r.eggsHatched]), (() => {
+            this.ants += r.ants + r.eggsHatched;
+            this.enableButton(this.actionHatchEggs);
+            this.updateUI();
+        }).bind(this));
+        
+    }
+    
+    goGetFood(values) {
+        
     }
 
 }

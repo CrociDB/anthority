@@ -169,8 +169,14 @@ a, h1, span {
     text-decoration: none;
     font-size: 14pt;
     margin-bottom: 10px;
+    pointer-events: all;
 
     transition: background-color 200ms;
+}
+
+.disabled {
+    background-color: #B28B7E;
+    pointer-events: none;
 }
 
 .inline-button {

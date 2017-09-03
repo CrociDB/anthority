@@ -23,4 +23,11 @@ class GameBalance {
             source: place
         };
     }
+
+    evaluateEggs(eggs) {
+        return {
+            ants: eggs,
+            eggsHatched: eggs
+        };
+    }
 }

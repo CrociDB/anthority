@@ -28,6 +28,6 @@ const randweight = (c, p) => {
 };
 const randweightsqrd = (c, p) => randweight(c, v => p(v) * p(v));
 
-const TIME_SCALE = 10.0; // Every time unit should multiply this
+const TIME_SCALE = 30.0; // Every time unit should multiply this
 const TIME_PACE = 20; // This is hours by minute
 const TIME_INTERVAL = 32;

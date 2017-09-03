@@ -122,7 +122,7 @@ class Game {
             "Scout Result", 
             repltxt(TEXTS.scoutFound, [r.ants, r.dist, r.source.n, r.source.e]),
             [new Range(1, this.ants, 1, "Ants")], 
-            this.goGetFood.bind(this));
+            this.goGetFood.bind(this, r));
         
         this.updateUI();
     }
@@ -139,9 +139,23 @@ class Game {
         }).bind(this));
         
     }
+
+    evaluateResources(v) {
+        this.ants += v.ants;
+        this.energy += v.source.e;
+        this.updateUI();
+    }
     
-    goGetFood(values) {
-        
+    goGetFood(v) {
+        console.log(v);
+
+        let time = (v.dist * (5 / v.ants)) * (v.source.e / (v.ants * 5));
+
+        let progress = new Progress(this.time, "Bringing Resources", time, this.evaluateResources.bind(this, v));
+        this.addProgress(progress);
+
+        this.ants -= v.ants;
+        this.updateUI();
     }
 
 }

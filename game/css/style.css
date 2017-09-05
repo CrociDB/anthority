@@ -217,8 +217,8 @@ a, h1, span {
     left: 10%;
     right: 10%;
     
-    min-width: 300px;
-    height: 310px;
+    min-width: 260px;
+    height: 320px;
     
     margin: auto;
     border-radius: 5px;
@@ -274,7 +274,8 @@ a, h1, span {
         left: 30%;
         right: 30%;
         
-        width: 450px;
+        min-width: 380px;
+        max-width: 500px;
         height: 300px;
         
         margin: auto;
@@ -301,7 +302,6 @@ a, h1, span {
 .range h1 {
     font-size: 16px;
     display: inline-block;
-    margin-right: 10px;
     margin-bottom: 20px;
 }
 
@@ -310,8 +310,8 @@ a, h1, span {
     font-size: 16px;
     font-weight: bold;
     text-align: center;
-    margin-right: 10px;
-    margin-left: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
     width: 60px;
 }
 

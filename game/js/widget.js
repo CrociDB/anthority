@@ -5,8 +5,4 @@ class Widget {
     init() {
 
     }
-
-    destroy() {
-        
-    }
 }

@@ -122,12 +122,15 @@ class Game {
     evaluateScouts(dist, ants) {
         const r = this.balance.evaluateScouts(dist, ants);
         this.ants += r.ants;
+
+        let rants = new Range(1, this.ants, 1, "Ants");
+        let info = new TimeInfo(this.time, this.balance.time_get_food.bind(null, r.dist, rants, r.source.e));
         
         showDialogWidget(
-            "Scout Result", 
+            "Scout Result",
             repltxt(TEXTS.scoutFound, [r.ants, r.dist, r.source.n, r.source.e]),
-            [new Range(1, this.ants, 1, "Ants")], 
-            this.goGetFood.bind(this, r));
+            [rants, info], 
+            this.goGetFood.bind(this, r, rants, info));
         
         this.updateUI();
     }
@@ -151,12 +154,12 @@ class Game {
         this.updateUI();
     }
     
-    goGetFood(v) {
-        console.log(v);
+    goGetFood(v, ants, info) {
+        info.destroy();
 
-        let time = (v.dist * (5 / v.ants)) * (v.source.e / (v.ants * 5));
-
-        let progress = new Progress(this.time, "Bringing Resources", time, this.evaluateResources.bind(this, v));
+        let progress = new Progress(this.time, "Bringing Resources", 
+            this.balance.time_get_food(v.dist, ants, v.source.e),
+            this.evaluateResources.bind(this, v));
         this.addProgress(progress);
 
         this.ants -= v.ants;

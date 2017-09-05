@@ -7,20 +7,26 @@ class TimeInfo extends Widget{
     }
 
     getHTML() {
-        let str = "<div class=\"timeinfo\">This will take about <span>00</span> hours.</div>";
+        let str = "<div class=\"msghighlight\"></div>";
         return str;
     }
 
-    init(container) {
+    init() {
         this.elem = cEl(this.getHTML());
-
-        this.hour = this.elem.querySelector("span");
         this.uc = this.update.bind(this);
         this.scheduler.addUpdateCallback(this.uc);
     }
     
     update() {
-        this.hour.innerText = fmt(Math.ceil(this.timefunc()), "00");
+        let hours = Math.ceil(this.timefunc());
+
+        if (hours <= 24) {
+            this.elem.innerHTML = repltxt("This will take about <b>%1</b> hours.", [hours]);
+        } else {
+            let days = Math.floor(hours / 24);
+            hours = Math.floor(hours % 24);
+            this.elem.innerHTML = repltxt("This will take about <b>%1</b> days and <b>%2</b> hours.", [days, hours]);
+        }
     }
     
     destroy() {

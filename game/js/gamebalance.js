@@ -8,6 +8,11 @@ class GameBalance {
         return 1 + ((dist.val * .5) / (Math.log(ants.val) + 1));
     } 
 
+    time_get_food(dist, ants, energy) {
+        return (dist * (5 / ants.val)) * (energy / (ants.val * 5));
+    } 
+    
+
     // Evaluations
     evaluateScouts(dist, ants) {
         let randdist = randnum(dist / 3) * randsig();

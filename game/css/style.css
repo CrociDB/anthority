@@ -203,28 +203,31 @@ a, h1, span {
     right: 0;
     
     background-color: #282626;
-    opacity: 0.6;
+    opacity: 0.8;
     transition: opacity 50ms ease-in;
 }
 
 .dialog {
-    visibility: visible;
-    position: absolute;
-    display: block;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    height: auto;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -o-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+
+    display: inline-block;
     
-    top: 10%;
-    bottom: 10%;
-    left: 10%;
-    right: 10%;
-    
-    min-width: 260px;
-    height: 320px;
+    min-width: 280px;
+    max-width: 400px;
     
     margin: auto;
     border-radius: 5px;
     
     background-color: #2F3439;
-    padding-bottom: 35px; 
+    padding-bottom: 15px; 
     border-bottom: 5px solid #EE7147;
     opacity: 1;
     transition: opacity 100ms  ease-in;
@@ -242,7 +245,6 @@ a, h1, span {
 }
 
 .dialog section {
-    height: 210px;
     padding: 5px;
     margin: 10px;
     margin-bottom: 25px;
@@ -250,6 +252,7 @@ a, h1, span {
     color: #2F3439;
     border-radius: 5px;
     overflow-y: auto;
+    max-height: 70vh;
 }
 
 .dialog .button-container {
@@ -269,24 +272,7 @@ a, h1, span {
 
 @media screen and (min-width: 768px) {
     .dialog {
-        top: 30%;
-        bottom: 30%;
-        left: 30%;
-        right: 30%;
-        
-        min-width: 380px;
-        max-width: 500px;
-        height: 300px;
-        
-        margin: auto;
-        border-radius: 5px;
-        
-        background-color: #2F3439;
-        padding-bottom: 35px; 
-    }
-
-    .dialog section {
-        height: 200px;
+        width: 400px;
     }
 }
 

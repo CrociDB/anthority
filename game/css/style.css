@@ -211,15 +211,12 @@ a, h1, span {
     position: fixed;
     left: 50%;
     top: 50%;
-    height: auto;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -ms-transform: translateX(-50%) translateY(-50%);
-    -o-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 
-    display: inline-block;
-    
     min-width: 280px;
     max-width: 400px;
     
@@ -230,7 +227,7 @@ a, h1, span {
     padding-bottom: 15px; 
     border-bottom: 5px solid #EE7147;
     opacity: 1;
-    transition: opacity 100ms  ease-in;
+    transition: opacity 200ms  ease-in;
 }
 
 .hidden {
@@ -262,7 +259,6 @@ a, h1, span {
 
 .msghighlight {
     background-color: white;
-    margin: 3px;
     padding: 3px;
     border-radius: 3px;
 }

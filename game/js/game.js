@@ -62,9 +62,12 @@ class Game {
 
     // Actions
     doFindFood() {
+        let dist = new Range(10, 100, 5, "Distance");
+        let ants = new Range(1, this.ants, 1, "Scouts");
+        let info = new TimeInfo(this.time, this.balance.time_find_food.bind(null, dist, ants));
+
         showDialogWidget("Find Food", "<p>How far?</p><p>You'll need... </p>", [
-            new Range(10, 100, 5, "Distance"),
-            new Range(1, this.ants, 1, "Scouts")], this.sendScouts.bind(this), false);
+            dist, ants, info], this.sendScouts.bind(this), false);
     }
     
     doHatchEggs() {
@@ -78,15 +81,18 @@ class Game {
 
     // Create jobs
     sendScouts(values) {
-        const dist = values[0].val;
-        const ants = values[1].val;
+        const dist = values[0];
+        const ants = values[1];
+        const info = values[2];
 
-        const time = 1 + ((dist * .5) / (Math.log(ants) + 1));
+        info.destroy();
 
-        let progress = new Progress(this.time, "Scouts", time, this.evaluateScouts.bind(this, dist, ants));
+        let progress = new Progress(this.time, "Scouts", 
+            this.balance.time_find_food(dist, ants),
+            this.evaluateScouts.bind(this, dist.val, ants.val));
         this.addProgress(progress);
 
-        this.ants -= ants;
+        this.ants -= ants.val;
         this.updateUI();
     }
 
@@ -114,8 +120,7 @@ class Game {
     
     // Evaluation methods
     evaluateScouts(dist, ants) {
-        let r = this.balance.evaluateScouts(dist, ants);
-        
+        const r = this.balance.evaluateScouts(dist, ants);
         this.ants += r.ants;
         
         showDialogWidget(

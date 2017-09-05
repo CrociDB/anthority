@@ -1,8 +1,14 @@
 class GameBalance {
     constructor() {
-
+        
     }
 
+    // Time calcs
+    time_find_food(dist, ants) {
+        return 1 + ((dist.val * .5) / (Math.log(ants.val) + 1));
+    } 
+
+    // Evaluations
     evaluateScouts(dist, ants) {
         let randdist = randnum(dist / 3) * randsig();
         let totaldist = dist + randdist;

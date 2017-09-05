@@ -360,7 +360,7 @@ ul {
     margin: 0;
 }
 
-progress::-moz-progress-bar { background: #EE7147; }}
+progress::-moz-progress-bar { background: #EE7147; }
 progress::-webkit-progress-bar { background: #D0D3D2; }
 progress::-webkit-progress-value { background: #EE7147; }
 progress {

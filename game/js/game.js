@@ -71,8 +71,11 @@ class Game {
     }
     
     doHatchEggs() {
-        showDialogWidget("Hatch Eggs", "<div><p>How many eggs you want to hatch?</p><p><strong>Remember:</strong> you'll need one ant per egg!</p></div>", [
-            new Range(1, this.ants, 1, "Eggs")], this.hatchEggs.bind(this));
+        let eggs = new Range(1, this.ants, 1, "Eggs");
+        let info = new TimeInfo(this.time, this.balance.time_hatch_egg.bind(null, eggs));
+
+        showDialogWidget("Hatch Eggs", "<div><p>How many eggs you want to hatch?</p><p><strong>Remember:</strong> you'll need one ant per egg!</p></div>", 
+        [eggs, info], this.hatchEggs.bind(this));
     }
     
     doBuildRoom() {
@@ -97,16 +100,17 @@ class Game {
     }
 
     hatchEggs(values) {
-        let eggs = values[0].val;
+        let eggs = values[0];
+        values[1].destroy();
 
-        const time = 48 + eggs / 2;
-
-        let progress = new Progress(this.time, "Hatching Eggs", time, this.evaluateEggs.bind(this, eggs));
+        let progress = new Progress(this.time, "Hatching Eggs", 
+            this.balance.time_hatch_egg(eggs),
+            this.evaluateEggs.bind(this, eggs.val));
         this.addProgress(progress);
 
         this.disableButton(this.actionHatchEggs);
 
-        this.ants -= eggs;
+        this.ants -= eggs.val;
         this.updateUI();
     }
     
@@ -130,7 +134,7 @@ class Game {
             "Scout Result",
             repltxt(TEXTS.scoutFound, [r.ants, r.dist, r.source.n, r.source.e]),
             [rants, info], 
-            this.goGetFood.bind(this, r, rants, info));
+            this.goGetFood.bind(this, r));
         
         this.updateUI();
     }
@@ -154,11 +158,11 @@ class Game {
         this.updateUI();
     }
     
-    goGetFood(v, ants, info) {
-        info.destroy();
+    goGetFood(v, values) {
+        values[1].destroy();
 
         let progress = new Progress(this.time, "Bringing Resources", 
-            this.balance.time_get_food(v.dist, ants, v.source.e),
+            this.balance.time_get_food(v.dist, values[0], v.source.e),
             this.evaluateResources.bind(this, v));
         this.addProgress(progress);
 

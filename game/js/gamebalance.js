@@ -11,6 +11,10 @@ class GameBalance {
     time_get_food(dist, ants, energy) {
         return (dist * (5 / ants.val)) * (energy / (ants.val * 5));
     } 
+
+    time_hatch_egg(eggs) {
+        return 48 + eggs.val * 12;
+    }
     
 
     // Evaluations

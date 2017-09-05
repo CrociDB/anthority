@@ -240,7 +240,8 @@ a, h1, span {
 }
 
 .dialog header {
-    padding: 10px;
+    padding: 15px;
+    padding-bottom: 5px;
     font-size: 14pt;
 }
 

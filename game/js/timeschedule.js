@@ -7,8 +7,6 @@ class TimeSchedule {
         this.cycle = 0;
 
         this.updateCallbacks = [];
-
-        this.play();
     }
     
     addUpdateCallback(callback) {

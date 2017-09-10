@@ -13,6 +13,8 @@ class Game {
     }
     
     initUI() {
+        this.container = gId("game");
+
         this.actionFindFood = gId("btnScout");
         this.actionHatchEggs = gId("btnHatch");
         this.actionBuildRoom = gId("btnBuildRoom");
@@ -31,6 +33,14 @@ class Game {
         this.actionBuildRoom.onclick = this.doBuildRoom.bind(this);
 
         this.updateUI();
+    }
+
+    hide() {
+        this.container.classList.add("gamehidden");
+    }
+    
+    show() {
+        this.container.classList.remove("gamehidden");
     }
     
     updateUI() {
@@ -92,11 +102,7 @@ class Game {
     }
 
     // Create jobs
-    sendScouts(values) {
-        const dist = values[0];
-        const ants = values[1];
-        const info = values[2];
-
+    sendScouts([dist, ants, info]) {
         info.destroy();
 
         let progress = new Progress(this.time, "Scouts", 
@@ -141,7 +147,8 @@ class Game {
     }
     
     play() {
-        
+        this.show();
+        this.time.play();
     }
     
     // Evaluation methods

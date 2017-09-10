@@ -15,6 +15,12 @@ const PLACES = [
     { d: 40, n: "Piece of Chocolate", e: 70  }
 ];
 
+const SOUNDS = {
+    progress_start: jsfxr([2,,0.09,,0.49,0.34,,0.0525,,,,0.28,0.29,,,,,,1,,,,,0.28]),
+    dialog_open: jsfxr([3,,0.0346,,0.1453,0.5152,,-0.86,-0.26,,,-0.38,,,,,,,1,,,,,0.3]),
+    dialog_close: jsfxr([3,,0.0346,,0.1453,0.5152,,-0.86,-0.26,,,-0.84,,,,,,,1,,,,,0.3])
+};
+
 const MAP_COLUMNS = 7;
 const MAP = [
     [{c: 3}],

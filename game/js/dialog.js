@@ -11,12 +11,14 @@ let dialog = {
         this.section.innerHTML = "";
         this.active = false;
 
+        playaudio(SOUNDS.dialog_close);        
         setTimeout(this.checkQueue.bind(this), 100);
     },
     show() {
         this.bg.classList.remove("hidden");
         this.dw.classList.remove("hidden");
         this.active = true;
+        playaudio(SOUNDS.dialog_open);
     },
     onOk: null,
     okCancel: null,

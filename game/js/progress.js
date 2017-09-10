@@ -22,6 +22,8 @@ class Progress extends Widget{
         this.baseTime = this.scheduler.cycle;
         this.uc = this.update.bind(this);
         this.scheduler.addUpdateCallback(this.uc);
+
+        playaudio(SOUNDS.progress_start);
     }
     
     update() {

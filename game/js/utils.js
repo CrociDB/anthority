@@ -28,6 +28,16 @@ const randweight = (c, p) => {
 };
 const randweightsqrd = (c, p) => randweight(c, v => p(v) * p(v));
 
+const audio_player = new Audio();
+let AUDIO = true;
+const playaudio = (a) => {
+    if (AUDIO) {
+        audio_player.pause();
+        audio_player.src = a;
+        audio_player.play();
+    }
+};
+
 const TIME_SCALE = 30.0; // Every time unit should multiply this
 const TIME_PACE = 20; // This is hours by minute
 const TIME_INTERVAL = 32;

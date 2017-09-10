@@ -1,6 +1,6 @@
 class Map {
     constructor() {
-
+        this.ownedRooms = 1;
     }
 
     init(map, element) {
@@ -29,9 +29,18 @@ class Map {
             });
         });
         this.map[0].own = true;
-        this.map[1].own = true;
-        this.map[2].own = true;
         this.lines = this.rawmap.length;
+    }
+
+    buildRoom() {
+        if (this.ownedRooms < this.map.length) {
+            this.ownedRooms++;
+            for (let i = 0; i < this.ownedRooms; i++) {
+                this.map[i].own = true;
+            }
+
+            this.updateSize();
+        }
     }
     
     updateSize() {

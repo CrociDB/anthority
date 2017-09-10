@@ -79,7 +79,10 @@ class Game {
     }
     
     doBuildRoom() {
-        showDialogOk("Build Room", "<p>You'll need X ants to build this room.</p>", () => {});
+        const e = this.balance.value_room_energy(this.map.ownedRooms);
+        const a = this.balance.value_room_ants(this.map.ownedRooms);
+        const t = this.balance.time_build_room();
+        showDialogOk("Build Room", repltxt(TEXTS.buildRoomPrompt, [e, a, t]), this.buildRoom.bind(this, e, a, t));
     }
 
     // Create jobs
@@ -111,6 +114,19 @@ class Game {
         this.disableButton(this.actionHatchEggs);
 
         this.ants -= eggs.val;
+        this.updateUI();
+    }
+
+    buildRoom(energy, ants, time) {
+        let progress = new Progress(this.time, "Building a Room", 
+            time,
+            this.placeRoom.bind(this, ants));
+        this.addProgress(progress);
+
+        this.disableButton(this.actionBuildRoom);
+
+        this.energy -= energy;
+        this.ants -= ants;
         this.updateUI();
     }
     
@@ -156,6 +172,15 @@ class Game {
         this.ants += v.ants;
         this.energy += v.source.e;
         this.updateUI();
+    }
+
+    placeRoom(ants) {
+        showDialogOk("Build Room", TEXTS.buildRoomResult, (() => {
+            this.ants += ants;
+            this.enableButton(this.actionBuildRoom);
+            this.map.buildRoom();
+            this.updateUI();
+        }).bind(this));
     }
     
     goGetFood(v, values) {

@@ -15,7 +15,19 @@ class GameBalance {
     time_hatch_egg(eggs) {
         return 48 + eggs.val * 12;
     }
-    
+
+    time_build_room() {
+        return 24 * 3;
+    }
+
+    // Value calcs
+    value_room_energy(rooms) {
+        return 50 + (rooms - 1) * 20; 
+    }
+
+    value_room_ants(rooms) {
+        return 50 + (rooms - 1) * 10;
+    }
 
     // Evaluations
     evaluateScouts(dist, ants) {

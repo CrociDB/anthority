@@ -82,7 +82,13 @@ class Game {
         const e = this.balance.value_room_energy(this.map.ownedRooms);
         const a = this.balance.value_room_ants(this.map.ownedRooms);
         const t = this.balance.time_build_room();
-        showDialogOk("Build Room", repltxt(TEXTS.buildRoomPrompt, [e, a, t]), this.buildRoom.bind(this, e, a, t));
+
+        if (e > this.energy || a > this.ants) {
+            const txt = "<div>"+ TEXTS.buildRoomError + repltxt(TEXTS.buildRoomPrompt, [e, a, t]) + "</div>";
+            showDialogOk("Error: Build Room", txt, () => {});
+        } else {
+            showDialogOk("Build Room", repltxt(TEXTS.buildRoomPrompt, [e, a, t]), this.buildRoom.bind(this, e, a, t));
+        }
     }
 
     // Create jobs

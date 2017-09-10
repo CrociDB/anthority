@@ -263,6 +263,13 @@ a, h1, span {
     border-radius: 3px;
 }
 
+.msgerror {
+    background-color: white;
+    color: #B83310;
+    padding: 3px;
+    border-radius: 3px;
+}
+
 .msghighlight b {
     color: #0D0037;
 }

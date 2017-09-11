@@ -187,9 +187,21 @@ a, h1, span {
     padding: 5px;
 }
 
-.button:hover {
+.button:active {
     background-color: #369D8A;
     transition: background-color 200ms;
+}
+
+@media screen and (min-width: 768px) {
+    .button:hover {
+        background-color: #369D8A;
+        transition: background-color 200ms;
+    }
+
+    .button:active {
+        background-color: #54BAA7;
+        transition: background-color 200ms;
+    }
 }
 
 /* Dialog */

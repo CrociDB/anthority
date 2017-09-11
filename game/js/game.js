@@ -149,6 +149,7 @@ class Game {
     play() {
         this.show();
         this.time.play();
+        this.map.updateSize();
     }
     
     // Evaluation methods
@@ -209,11 +210,4 @@ class Game {
     }
 }
 
-let game = null;
-(function() {
-    game = new Game();
-    game.play();
-})();
-
-
-
+let game = new Game();

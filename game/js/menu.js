@@ -5,6 +5,8 @@ class Menu {
 
     initUI() {
         this.container = gId("menu");
+        this.actionPlay = gId("btnPlay");
+        this.actionPlay.onclick = this.startGame.bind(this);
     }
 
     hide() {
@@ -18,11 +20,15 @@ class Menu {
     play() {
         this.show();
     }
+
+    startGame() {
+        this.hide();
+        game.play();
+    }
 }
 
-let menu = null;
+let menu = new Menu();
 (function() {
-    menu = new Menu();
     menu.play();
 })();
 

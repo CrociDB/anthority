@@ -365,6 +365,34 @@ progress {
     background-color: #D0D3D2;
 }
 
-.gamehidden {
-    visibility: hidden;
+.screenhidden {
+    display: none;
+}
+
+/* Menu */
+
+#menu h1 {
+    text-align: center;
+    font-size: 9vw;
+    letter-spacing: 2vw;
+    color: #989898;
+    margin-top: 25vh;
+    margin-bottom: 20vh;
+}
+
+#menu h1 span {
+    color: white;
+}
+
+#menu .button {
+    margin-right: 5vw;
+    margin-left: 5vw;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 30px;
+}
+
+#menu footer {
+    text-align: center;
+    margin-top: 20vh;
 }

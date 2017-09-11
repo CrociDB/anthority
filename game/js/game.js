@@ -36,11 +36,11 @@ class Game {
     }
 
     hide() {
-        this.container.classList.add("gamehidden");
+        this.container.classList.add("screenhidden");
     }
     
     show() {
-        this.container.classList.remove("gamehidden");
+        this.container.classList.remove("screenhidden");
     }
     
     updateUI() {
@@ -207,8 +207,8 @@ class Game {
         this.ants -= v.ants;
         this.updateUI();
     }
-
 }
+
 let game = null;
 (function() {
     game = new Game();

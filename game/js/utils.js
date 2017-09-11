@@ -57,6 +57,17 @@ const playaudio = (a) => {
     }
 };
 
+// Fade
+const fadeIn  = () => {
+    gId("fadeDiv").classList.add("fadehid");
+    playaudio(SOUNDS.fade_in);
+}
+
+const fadeOut = () => {
+    gId("fadeDiv").classList.remove("fadehid");
+    playaudio(SOUNDS.fade_out);
+}
+
 // Time
 const TIME_SCALE = 30.0; // Every time unit should multiply this
 const TIME_PACE = 20; // This is hours by minute

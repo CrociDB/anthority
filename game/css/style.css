@@ -408,3 +408,108 @@ progress {
     text-align: center;
     margin-top: 20vh;
 }
+
+/* Messenger */
+
+#messenger header {
+    position: absolute;
+    display: block;
+    background-color: #2B9884;
+    padding: 10px;
+    height: 30px;
+
+    font-size: 25px;
+
+    border-radius: 5px;
+    border-bottom: 5px solid #EE7147;
+
+    top: 10px;
+    right: 10px;
+    left: 10px;
+}
+
+#messenger section {
+    position: absolute;
+    display: block;
+    background-color: #2F3439;
+    padding: 5px;
+    border-radius: 5px;
+
+    top: 75px;
+    bottom: 75px;
+    right: 10px;
+    left: 10px;
+    overflow-y: scroll;
+}
+
+#messenger section ul {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    padding: 10px;
+}
+
+#messenger section li {
+    list-style-type: none;
+    height: auto;
+    margin-bottom: 10px;
+    overflow-y: visible;
+}
+
+#messenger section span {
+    display: block;
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    background-color: black;
+}
+
+#messenger section li p {
+    margin-left: 60px;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    background-color: #484E55;
+}
+
+#messenger section li p b {
+    color: white;
+}    
+
+#messenger footer {
+    position: absolute;
+    display: block;
+    height: 50px;
+    bottom: 15px;
+    left: 10px;
+    right: 10px;
+    background-color: #3F454B;
+    border-radius: 5px;
+}
+
+@media screen and (min-width: 768px) {
+    #messenger section li p {
+        font-size: 15px;
+    }        
+}
+
+/* Fade */
+
+#fadeDiv {
+    display: block;
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    background-color: #0C0B0B;
+    transition: transform 200ms ease-out;
+}
+
+.fadehid {
+    transform: scaleY(0);
+}

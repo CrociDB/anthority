@@ -209,5 +209,3 @@ class Game {
         this.updateUI();
     }
 }
-
-let game = new Game();

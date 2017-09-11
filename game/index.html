@@ -9,13 +9,22 @@
 </head>
 <body>
     <div id="menu" class="screenhidden">
-        <div id="firstscreen">
-            <h1><span>ANT</span>HORITY</h1>
-            <a href="javascript:;" id="btnPlay" class="button">Play</a>
-            <footer>ANTHORITY 2017 - by CrociDB</footer>
-        </div>
+        <h1><span>ANT</span>HORITY</h1>
+        <a href="javascript:;" id="btnPlay" class="button">Play</a>
+        <footer>ANTHORITY 2017 - by CrociDB</footer>
     </div>
     
+    <div id="messenger" class="screenhidden">
+        <header>Antherous</header>
+        <section>
+            <ul>
+            </ul>
+        </section>
+        <footer>
+            <a href="javascript:;" id="btnContinue" class="button disabled">Continue</a>
+        </footer>
+    </div>
+
     <div id="game" class="screenhidden">
         <section id="header">
             <div><span id="energy">0</span><span>ENERGY</span></div>
@@ -64,6 +73,8 @@
             <a href="javascript:dialog.onOk();" id="dialogOk" class="button inline-button">Ok</a>
         </div>
     </div>
+    
+    <div id="fadeDiv" class="fadehid"></div>
 
     <!-- Scripts -->
     <script src="js/jsfxr.js"></script>
@@ -79,5 +90,7 @@
     <script src="js/map.js"></script>
     <script src="js/game.js"></script>
     <script src="js/menu.js"></script>
+    <script src="js/messenger.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

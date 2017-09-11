@@ -20,15 +20,16 @@ class Menu {
     play() {
         this.show();
     }
-
+    
     startGame() {
-        this.hide();
-        game.play();
+        co((function*() {
+            yield .2;
+            fadeOut();
+            yield 1;
+            this.hide();
+            messenger.playIntro();
+            yield .1;
+            fadeIn();
+        }).bind(this));
     }
 }
-
-let menu = new Menu();
-(function() {
-    menu.play();
-})();
-

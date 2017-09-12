@@ -24,7 +24,7 @@ const MESSAGE_INTRO = [
 const MESSAGE_GAMEOVER = [
     ["Oh! I believed you and you failed us again.", 4],
     ["I really don't know what to say... I trusted you.", 3],
-    ["I think that's it. <b>CrociDB</b> thanks you for playing this anyway.", 3],
+    ["I think that's it. <b><a href=\"http://bruno.croci.me\">CrociDB</a></b> thanks you for playing this anyway.", 3],
 ];
 
 const PLACES = [

@@ -16,6 +16,12 @@ body {
 
 a, h1, span {
     cursor: default;
+    color: #A6CCE0;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 /* Header */
@@ -172,6 +178,7 @@ a, h1, span {
     pointer-events: all;
 
     transition: background-color 200ms;
+    text-decoration: none;    
 }
 
 .disabled {
@@ -196,6 +203,7 @@ a, h1, span {
     .button:hover {
         background-color: #369D8A;
         transition: background-color 200ms;
+        text-decoration: none;
     }
 
     .button:active {

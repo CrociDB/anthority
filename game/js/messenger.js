@@ -19,6 +19,7 @@ class Messenger {
     
     resetList() {
         this.list.innerHTML = "";
+        this.deactivateContinue();
     }
 
     addMessage(t) {
@@ -30,6 +31,11 @@ class Messenger {
     activateContinue(callback) {
         this.continue.classList.remove("disabled");
         this.continue.onclick = callback;
+    }
+
+    deactivateContinue() {
+        this.continue.classList.add("disabled");
+        this.continue.onclick = null;
     }
 
     // Initial routine

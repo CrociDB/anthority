@@ -71,6 +71,6 @@ const fadeOut = () => {
 }
 
 // Time
-const TIME_SCALE = 1.0; // Every time unit should multiply this
+const TIME_SCALE = 20.0; // Every time unit should multiply this
 const TIME_PACE = 20; // This is hours by minute
 const TIME_INTERVAL = 32;

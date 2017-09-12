@@ -9,7 +9,7 @@ class GameBalance {
     } 
 
     time_get_food(dist, ants, energy) {
-        return (dist * (5 / ants.val)) * (energy / (ants.val * 5));
+        return (dist * (1 / ants.val)) * (energy / (ants.val * 5));
     } 
 
     time_hatch_egg(eggs) {
@@ -22,7 +22,7 @@ class GameBalance {
 
     // Value calcs
     value_room_energy(rooms) {
-        return 50 + (rooms - 1) * 20; 
+        return 50 + (rooms - 1) * 20;
     }
 
     value_room_ants(rooms) {

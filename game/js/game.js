@@ -3,6 +3,7 @@ class Game {
         this.energy = 10;
         this.ants = 10;
         this.defense = 1.0;
+        this.alive = true;
 
         this.balance = new GameBalance();
         this.time = new TimeSchedule();
@@ -42,10 +43,34 @@ class Game {
     show() {
         this.container.classList.remove("screenhidden");
     }
-    
-    update() {
+     
+    addProgress(p) {
+        this.statusContainer.appendChild(p.elem);
+    }
+
+    hasProgress() {
+        return this.statusContainer.childElementCount > 0;
+    }
+
+    checkGameStatus() {
         this.defense = this.ants / this.map.capacity();
 
+        if (this.alive) {
+            if (this.defense < .1) {
+                if (randnum() < (1 - (this.defense * 5))) {
+                    this.sufferAttack();
+                    return;
+                }
+            } 
+            
+            if (this.energy == 0 && !this.hasProgress()) {
+                this.sufferAttack();
+            }
+        }
+    }
+    
+    update() {
+        this.checkGameStatus();
         this.updateUI();
     }
 
@@ -59,6 +84,27 @@ class Game {
         this.header.classList.add("hhighlight");
     }
 
+    sufferAttack() {
+        this.time.pause();
+        this.alive = false;
+
+        playaudio(SOUNDS.attack);
+        
+        showDialogOk("Defenses Down", TEXTS.sufferAttack, 
+            this.gameOver.bind(this));
+    }
+
+    gameOver() {
+        co(function*() {
+            fadeOut();
+            yield 1.5;
+            game.hide();
+            messenger.playGameOver();
+            yield .1;
+            fadeIn();
+        });
+    }
+
     disableButton(elem) {
         elem.classList.add("disabled");
     }
@@ -70,6 +116,8 @@ class Game {
     timeUpdate() {
         this.labelHour.innerText = fmt(this.time.hour, "00");
         this.labelDay.innerText = this.time.day;
+
+        this.checkGameStatus();
     }
 
     initMap() {
@@ -116,6 +164,8 @@ class Game {
             [info],
             this.buildRoom.bind(this, e, a, t));
         }
+
+        this.update();
     }
 
     // Create jobs
@@ -135,6 +185,8 @@ class Game {
             this.ants -= ants.val;
             this.update();
         }
+
+        this.update();
     }
 
     hatchEggs([eggs, info]) {
@@ -154,8 +206,9 @@ class Game {
     
             this.energy -= energy;
             this.ants -= eggs.val;
-            this.update();
         }
+
+        this.update();
     }
 
     buildRoom(energy, ants, time, [info]) {
@@ -171,10 +224,6 @@ class Game {
         this.energy -= energy;
         this.ants -= ants;
         this.update();
-    }
-    
-    addProgress(p) {
-        this.statusContainer.appendChild(p.elem);
     }
     
     play() {
@@ -210,7 +259,8 @@ class Game {
             this.enableButton(this.actionHatchEggs);
             this.update();
         }).bind(this));
-        
+
+        this.update();
     }
 
     evaluateResources(v) {
@@ -226,6 +276,8 @@ class Game {
             this.map.buildRoom();
             this.update();
         }).bind(this));
+
+        this.update();
     }
     
     goGetFood(v, [ants, info]) {
@@ -243,7 +295,8 @@ class Game {
 
             this.energy -= energy;
             this.ants -= v.ants;
-            this.update();
         }
+
+        this.update();
     }
 }

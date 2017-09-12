@@ -32,6 +32,23 @@ class Messenger {
         this.continue.onclick = callback;
     }
 
+    // Initial routine
+    
+    playIntro() {
+        this.resetList();
+        this.show();
+        co((function*() {
+            yield 1;
+            for (let [m, t] of MESSAGE_INTRO) {
+                this.addMessage(m);
+                yield t;
+            }
+            
+            this.activateContinue(this.startGame.bind(this));
+            playaudio(SOUNDS.warn);
+        }).bind(this));
+    }
+    
     startGame() {
         co((function*() {
             yield .2;
@@ -44,18 +61,29 @@ class Messenger {
         }).bind(this));
     }
 
-    playIntro() {
+    // Initial routine
+    
+    playGameOver() {
         this.resetList();
         this.show();
         co((function*() {
             yield 1;
-            for (let [m, t] of MESSAGE_INTRO) {
+            for (let [m, t] of MESSAGE_GAMEOVER) {
                 this.addMessage(m);
                 yield t;
             }
-
-            this.activateContinue(this.startGame.bind(this));
+            
+            this.activateContinue(this.endGame.bind(this));
             playaudio(SOUNDS.warn);
+        }).bind(this));
+    }
+
+    endGame() {
+        co((function*() {
+            yield .2;
+            fadeOut();
+            yield 1;
+            window.location.reload();
         }).bind(this));
     }
 }

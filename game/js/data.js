@@ -14,15 +14,22 @@ const TEXTS = {
     infoWidgetDays: "<div><span>0</span><span>DAYS</span></div>",
     infoWidget: "<div>Cost</div>",
     energyError: "<p class=\"msgerror\">Seems like you don't have enough energy for that.</p>",
+    sufferAttack: "<p class=\"msgerror\">Oh! You let your defenses down and suffered an attack!</p>",
 };
 
 const MESSAGE_INTRO = [
-    ["Welcome, <b>Queen Lisa</b>. I'm Antherous, and I'm here to give you another chance.", 3],
+    ["Welcome, <b>My Queen</b>. I'm Antherous, and I'm here to give you another chance.", 3],
     ["Ok, I know you might be lost now. But I'll explain...", 2],
     ["I don't know how to tell you that, but... you went mad. You led your colony to ashes.", 4],
     ["All the ants died a terrible death when the <b>War</b> came, you couldn't protect your own ants.", 6],
     ["I managed to create this virtual interface for you so you can control our colony once again.", 5],
     ["Remember to", 5],
+];
+
+const MESSAGE_GAMEOVER = [
+    ["Oh! I believed you and you failed us again.", 4],
+    ["I really don't know what to say... I trusted you.", 3],
+    ["I think that's it. <b>CrociDB</b> thanks you for playing this anyway.", 3],
 ];
 
 const PLACES = [
@@ -39,7 +46,8 @@ const SOUNDS = {
     dialog_close: jsfxr([3,,0.0346,,0.1453,0.5152,,-0.86,-0.26,,,-0.84,,,,,,,1,,,,,0.5]),
     fade_out: jsfxr([3,0.29,0.2779,0.4006,0.3918,0.8028,,-0.3415,,,,,,,,,0.3766,-0.0329,1,,,,,0.4]),
     fade_in: jsfxr([3,0.19,0.25,0.75,0.3918,0.8028,,-0.3415,0.48,,,0.02,,,,,0.3766,-0.0329,1,,,,,0.4]),
-    warn: jsfxr([0,0.08,0.14,0.31,0.44,0.854,,,,,,0.3732,0.5938,,0.1999,,,0.02,0.44,,,,-0.02,0.3])
+    warn: jsfxr([0,0.08,0.14,0.31,0.44,0.854,,,,,,0.3732,0.5938,,0.1999,,,0.02,0.44,,,,-0.02,0.3]),
+    attack: jsfxr([3,0.1,0.18,0.4024,0.72,0.14,,,,,,-0.1928,0.7063,,,0.5103,0.0235,-0.2935,1,,,,,0.5])
 };
 
 const MAP_COLUMNS = 7;

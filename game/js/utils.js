@@ -47,13 +47,15 @@ const co = (f) => {
 };
 
 // Audio stuff
-const audio_player = new Audio();
+const audio_player = [new Audio(), new Audio()];
+let audio_index = 0;
 let AUDIO = true;
 const playaudio = (a) => {
     if (AUDIO) {
-        audio_player.pause();
-        audio_player.src = a;
-        audio_player.play();
+        audio_index = (audio_index + 1) % audio_player.length;
+        audio_player[audio_index].pause();
+        audio_player[audio_index].src = a;
+        audio_player[audio_index].play();
     }
 };
 
@@ -69,6 +71,6 @@ const fadeOut = () => {
 }
 
 // Time
-const TIME_SCALE = 30.0; // Every time unit should multiply this
+const TIME_SCALE = 1.0; // Every time unit should multiply this
 const TIME_PACE = 20; // This is hours by minute
 const TIME_INTERVAL = 32;

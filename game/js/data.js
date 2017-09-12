@@ -26,10 +26,10 @@ const MESSAGE_INTRO = [
 ];
 
 const PLACES = [
-    { d: 5, n: "Shattered Soda Can", e: 5 },
-    { d: 10, n: "Smashed Candy", e: 10 },
-    { d: 25, n: "Fallen Ice Cream", e: 50  },
-    { d: 40, n: "Piece of Chocolate", e: 70  }
+    { d: 5, n: "Shattered Soda Can", e: 10 },
+    { d: 15, n: "Smashed Candy", e: 20 },
+    { d: 30, n: "Fallen Ice Cream", e: 40  },
+    { d: 50, n: "Piece of Chocolate", e: 60  }
 ];
 
 const SOUNDS = {

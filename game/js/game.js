@@ -8,8 +8,8 @@ class Game {
         this.time = new TimeSchedule();
         this.time.addUpdateCallback(this.timeUpdate.bind(this));
 
-        this.initUI();
         this.initMap();
+        this.initUI();
     }
     
     initUI() {
@@ -32,7 +32,7 @@ class Game {
         this.actionHatchEggs.onclick = this.doHatchEggs.bind(this);
         this.actionBuildRoom.onclick = this.doBuildRoom.bind(this);
 
-        this.updateUI();
+        this.update();
     }
 
     hide() {
@@ -43,9 +43,16 @@ class Game {
         this.container.classList.remove("screenhidden");
     }
     
+    update() {
+        this.defense = this.ants / this.map.capacity();
+
+        this.updateUI();
+    }
+
     updateUI() {
         this.labelEnergy.innerText = this.energy;
         this.labelAnts.innerText = this.ants;
+        this.labelDefense.innerText = Math.ceil(this.defense * 100) + "%";
         
         this.header.classList.remove("hhighlight");
         this.header.offsetWidth;
@@ -126,7 +133,7 @@ class Game {
 
             this.energy -= energy;
             this.ants -= ants.val;
-            this.updateUI();
+            this.update();
         }
     }
 
@@ -147,7 +154,7 @@ class Game {
     
             this.energy -= energy;
             this.ants -= eggs.val;
-            this.updateUI();
+            this.update();
         }
     }
 
@@ -163,7 +170,7 @@ class Game {
 
         this.energy -= energy;
         this.ants -= ants;
-        this.updateUI();
+        this.update();
     }
     
     addProgress(p) {
@@ -192,7 +199,7 @@ class Game {
             [rants, info], 
             this.goGetFood.bind(this, r));
         
-        this.updateUI();
+        this.update();
     }
 
     evaluateEggs(eggs) {
@@ -201,7 +208,7 @@ class Game {
         showDialogOk("Hatch Eggs", repltxt(TEXTS.hatchResults, [r.eggsHatched]), (() => {
             this.ants += r.ants + r.eggsHatched;
             this.enableButton(this.actionHatchEggs);
-            this.updateUI();
+            this.update();
         }).bind(this));
         
     }
@@ -209,7 +216,7 @@ class Game {
     evaluateResources(v) {
         this.ants += v.ants;
         this.energy += v.source.e;
-        this.updateUI();
+        this.update();
     }
 
     placeRoom(ants) {
@@ -217,7 +224,7 @@ class Game {
             this.ants += ants;
             this.enableButton(this.actionBuildRoom);
             this.map.buildRoom();
-            this.updateUI();
+            this.update();
         }).bind(this));
     }
     
@@ -236,7 +243,7 @@ class Game {
 
             this.energy -= energy;
             this.ants -= v.ants;
-            this.updateUI();
+            this.update();
         }
     }
 }

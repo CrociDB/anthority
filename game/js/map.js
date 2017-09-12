@@ -32,6 +32,10 @@ class Map {
         this.lines = this.rawmap.length;
     }
 
+    capacity() {
+        return this.ownedRooms * 15;
+    }
+
     buildRoom() {
         if (this.ownedRooms < this.map.length) {
             this.ownedRooms++;

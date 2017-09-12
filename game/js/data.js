@@ -1,8 +1,3 @@
-const SYMBOLS = {
-    energy: "&#x26E8;",
-    ants: "&#x265F;",
-}
-
 const TEXTS = {
     scoutFound: "<div><p>You sent <b>%1</b> ants to scout a radius of <b>%2m</b> after food:</p><p class=\"msghighlight\">You've found <b>%3</b>. There's about (e) <b>%4</b> energy in this resource.</p><p>How many ants do you wish to send to pick the resource?</p></div>",
     hatchResults: "<p>You successfully hatched <b>%1</b> eggs!</p>",

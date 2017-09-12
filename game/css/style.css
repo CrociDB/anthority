@@ -16,8 +16,11 @@ body {
 
 a, h1, span {
     cursor: default;
-    color: #A6CCE0;
     text-decoration: none;
+}
+
+a {
+    color: #A6CCE0;
 }
 
 a:hover {
@@ -178,7 +181,7 @@ a:hover {
     pointer-events: all;
 
     transition: background-color 200ms;
-    text-decoration: none;    
+    text-decoration: none;
 }
 
 .disabled {

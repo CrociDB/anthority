@@ -20,6 +20,19 @@ class GameBalance {
         return 24 * 3;
     }
 
+    // Energy calcs
+    energy_find_food(ants) {
+        return ants.val * 2;
+    }
+
+    energy_get_food(ants) {
+        return ants.val * 2;
+    }
+
+    energy_hatch_egg(eggs) {
+        return eggs.val * 4;
+    }
+
     // Value calcs
     value_room_energy(rooms) {
         return 50 + (rooms - 1) * 20;

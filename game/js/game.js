@@ -74,62 +74,86 @@ class Game {
     doFindFood() {
         let dist = new Range(10, 100, 5, "Distance");
         let ants = new Range(1, this.ants, 1, "Scouts");
-        let info = new TimeInfo(this.time, this.balance.time_find_food.bind(null, dist, ants));
+        let info = new InfoWidget(this.time, 
+            this.balance.time_find_food.bind(null, dist, ants), 
+            this.balance.energy_find_food.bind(null, ants));
 
-        showDialogWidget("Find Food", "<p>How far?</p><p>You'll need... </p>", [
-            dist, ants, info], this.sendScouts.bind(this), false);
+        showDialogWidget("Find Food", "<p>Choose how many ants you want to send and the search radius.</p>", [
+            dist, ants, info], this.sendScouts.bind(this));
     }
     
     doHatchEggs() {
         let eggs = new Range(1, this.ants, 1, "Eggs");
-        let info = new TimeInfo(this.time, this.balance.time_hatch_egg.bind(null, eggs));
+        let info = new InfoWidget(this.time, 
+            this.balance.time_hatch_egg.bind(null, eggs),
+            this.balance.energy_hatch_egg.bind(null, eggs));
 
-        showDialogWidget("Hatch Eggs", "<div><p>How many eggs you want to hatch?</p><p><strong>Remember:</strong> you'll need one ant per egg!</p></div>", 
+        showDialogWidget("Hatch Eggs", "<div><p>How many eggs you want to hatch?</p></div>", 
         [eggs, info], this.hatchEggs.bind(this));
     }
     
     doBuildRoom() {
         const e = this.balance.value_room_energy(this.map.ownedRooms);
         const a = this.balance.value_room_ants(this.map.ownedRooms);
-        const t = this.balance.time_build_room();
+        const t = Math.floor(this.balance.time_build_room() / 24);
 
         if (e > this.energy || a > this.ants) {
             const txt = "<div>"+ TEXTS.buildRoomError + repltxt(TEXTS.buildRoomPrompt, [e, a, t]) + "</div>";
             showDialogOk("Error: Build Room", txt, () => {});
         } else {
-            showDialogOk("Build Room", repltxt(TEXTS.buildRoomPrompt, [e, a, t]), this.buildRoom.bind(this, e, a, t));
+            let info = new InfoWidget(this.time, 
+                this.balance.time_build_room,
+                this.balance.value_room_energy.bind(null, this.map.ownedRooms));
+
+            showDialogWidget("Build Room", repltxt(TEXTS.buildRoomPrompt, [e, a, t]),
+            [info],
+            this.buildRoom.bind(this, e, a, t));
         }
     }
 
     // Create jobs
     sendScouts([dist, ants, info]) {
         info.destroy();
+        const energy = this.balance.energy_find_food(ants);
 
-        let progress = new Progress(this.time, "Scouts", 
-            this.balance.time_find_food(dist, ants),
-            this.evaluateScouts.bind(this, dist.val, ants.val));
-        this.addProgress(progress);
+        if (energy > this.energy) {
+            showDialogOk("Error", TEXTS.energyError, () => {});
+        } else {
+            let progress = new Progress(this.time, "Scouts", 
+                this.balance.time_find_food(dist, ants),
+                this.evaluateScouts.bind(this, dist.val, ants.val));
+            this.addProgress(progress);
 
-        this.ants -= ants.val;
-        this.updateUI();
+            this.energy -= energy;
+            this.ants -= ants.val;
+            this.updateUI();
+        }
     }
 
-    hatchEggs(values) {
-        let eggs = values[0];
-        values[1].destroy();
+    hatchEggs([eggs, info]) {
+        info.destroy();
 
-        let progress = new Progress(this.time, "Hatching Eggs", 
-            this.balance.time_hatch_egg(eggs),
-            this.evaluateEggs.bind(this, eggs.val));
-        this.addProgress(progress);
+        const energy = this.balance.energy_hatch_egg(eggs);
 
-        this.disableButton(this.actionHatchEggs);
-
-        this.ants -= eggs.val;
-        this.updateUI();
+        if (energy > this.energy) {
+            showDialogOk("Error", TEXTS.energyError, () => {});
+        } else {
+            let progress = new Progress(this.time, "Hatching Eggs", 
+                this.balance.time_hatch_egg(eggs),
+                this.evaluateEggs.bind(this, eggs.val));
+            this.addProgress(progress);
+    
+            this.disableButton(this.actionHatchEggs);
+    
+            this.energy -= energy;
+            this.ants -= eggs.val;
+            this.updateUI();
+        }
     }
 
-    buildRoom(energy, ants, time) {
+    buildRoom(energy, ants, time, [info]) {
+        info.destroy();
+
         let progress = new Progress(this.time, "Building a Room", 
             time,
             this.placeRoom.bind(this, ants));
@@ -158,7 +182,9 @@ class Game {
         this.ants += r.ants;
 
         let rants = new Range(1, this.ants, 1, "Ants");
-        let info = new TimeInfo(this.time, this.balance.time_get_food.bind(null, r.dist, rants, r.source.e));
+        let info = new InfoWidget(this.time, 
+            this.balance.time_get_food.bind(null, r.dist, rants, r.source.e),
+            this.balance.energy_get_food.bind(null, rants));
         
         showDialogWidget(
             "Scout Result",
@@ -195,15 +221,22 @@ class Game {
         }).bind(this));
     }
     
-    goGetFood(v, values) {
-        values[1].destroy();
+    goGetFood(v, [ants, info]) {
+        info.destroy();
 
-        let progress = new Progress(this.time, "Bringing Resources", 
-            this.balance.time_get_food(v.dist, values[0], v.source.e),
-            this.evaluateResources.bind(this, v));
-        this.addProgress(progress);
+        const energy = this.balance.energy_get_food(ants);
 
-        this.ants -= v.ants;
-        this.updateUI();
+        if (energy > this.energy) {
+            showDialogOk("Error", TEXTS.energyError, () => {});
+        } else {
+            let progress = new Progress(this.time, "Bringing Resources", 
+                this.balance.time_get_food(v.dist, ants, v.source.e),
+                this.evaluateResources.bind(this, v));
+            this.addProgress(progress);
+
+            this.energy -= energy;
+            this.ants -= v.ants;
+            this.updateUI();
+        }
     }
 }

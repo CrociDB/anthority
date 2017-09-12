@@ -36,6 +36,8 @@ class Progress extends Widget{
     }
     
     destroy() {
+        playaudio(SOUNDS.warn);
+
         this.scheduler.removeUpdateCallback(this.uc);
         
         if (this.callback) {

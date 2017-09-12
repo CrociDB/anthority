@@ -304,7 +304,7 @@ a, h1, span {
 .range h1 {
     font-size: 16px;
     display: inline-block;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .range span {
@@ -325,6 +325,60 @@ a, h1, span {
 .range .button {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+/* InfoWidget */
+
+.infowidget {
+    background-color: #2B9884;
+    margin: 0;
+    margin-bottom: 10px;
+    overflow: hidden;
+    padding: 10px;
+
+    border-radius: 5px;
+    color: #DFE0E0;
+    border-bottom: 5px solid #EE7147;
+}
+
+.infowidget div {
+    display: block;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-left: 1px solid #67A9C7;
+    float: right;
+}
+
+.infowidget div:first-child {
+    display: inline-block;
+    float: none;
+    border: 0;
+    padding: 0;
+    
+    font-size: 16px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 0;
+    font-weight: bold;
+}
+
+.infowidget div:last-child {
+    border: 0;
+    float: right;
+}
+
+.infowidget div span {
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 22px;
+}
+
+.infowidget div span:last-child {
+    font-weight: normal;
+    font-size: 12px;
+    color: #B0F7EA;
 }
 
 /* Progress */

@@ -172,8 +172,6 @@ class Game {
     evaluateEggs(eggs) {
         let r = this.balance.evaluateEggs(eggs);
 
-        console.log(r);
-
         showDialogOk("Hatch Eggs", repltxt(TEXTS.hatchResults, [r.eggsHatched]), (() => {
             this.ants += r.ants + r.eggsHatched;
             this.enableButton(this.actionHatchEggs);

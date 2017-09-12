@@ -5,7 +5,7 @@ class GameBalance {
 
     // Time calcs
     time_find_food(dist, ants) {
-        return 1 + ((dist.val * .5) / (Math.log(ants.val) + 1));
+        return 1 + ((dist.val * .4) / Math.max(ants.val * .3, .5));
     } 
 
     time_get_food(dist, ants, energy) {

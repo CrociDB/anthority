@@ -132,6 +132,8 @@ class Game {
     }
 
     gameOver() {
+        dialog.flush();
+        
         co(function*() {
             fadeOut();
             yield 1.5;
@@ -141,8 +143,9 @@ class Game {
             fadeIn();
         });
     }
-
+    
     winGame() {
+        dialog.flush();
         this.alive = false;
         
         co(function*() {
@@ -302,12 +305,12 @@ class Game {
 
         let rants = new Range(1, this.ants, 1, "Ants");
         let info = new InfoWidget(this.time, 
-            this.balance.time_get_food.bind(null, r.dist, rants, r.source.e),
+            this.balance.time_get_food.bind(null, r.dist, rants, r.energy),
             this.balance.energy_get_food.bind(null, rants));
         
         showDialogWidget(
             "Scout Result",
-            repltxt(TEXTS.scoutFound, [r.ants, r.dist, r.source.n, r.source.e]),
+            repltxt(TEXTS.scoutFound, [r.ants, r.dist, r.source.n, r.energy]),
             [rants, info], 
             this.goGetFood.bind(this, r));
         
@@ -355,7 +358,7 @@ class Game {
             showDialogOk("Error", TEXTS.energyError, () => {});
         } else {
             let progress = new Progress(this.time, "Bringing Resources", 
-                this.balance.time_get_food(v.dist, ants, v.source.e),
+                this.balance.time_get_food(v.dist, ants, v.energy),
                 this.evaluateResources.bind(this, v));
             this.addProgress(progress);
 

@@ -28,8 +28,11 @@ let dialog = {
             createDialogOk(d.title, d.section, d.okCallback);
         }
     },
+    flush() {
+        this.dialogQueue = [];
+    },
     active: false,
-    dialogQueue: [] 
+    dialogQueue: []
 };
 
 const showDialogWidget = (title, section, widgets, okCallback, bottom = true) => {

@@ -60,7 +60,8 @@ class GameBalance {
             dist: dist,
             ants: ants - lostants,
             lostants: lostants,
-            source: place
+            source: place,
+            energy: Math.floor(place.e + (randnum(place.e * .2) * randsig()))
         };
     }
 

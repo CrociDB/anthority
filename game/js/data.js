@@ -1,4 +1,4 @@
-const TIME_SCALE = 1.0; // Every time unit should multiply this
+const TIME_SCALE = 10.0; // Every time unit should multiply this
 const TIME_PACE = 30; // This is hours by minute
 const TIME_INTERVAL = 32;
 
@@ -46,10 +46,14 @@ const MESSAGE_WIN = [
 ];
 
 const PLACES = [
+    { d: 3, n: "Chewed Gum", e: 5 },
     { d: 5, n: "Shattered Soda Can", e: 10 },
     { d: 15, n: "Smashed Candy", e: 20 },
-    { d: 30, n: "Fallen Ice Cream", e: 40  },
-    { d: 50, n: "Piece of Chocolate", e: 60  }
+    { d: 20, n: "Banana Peel", e: 22 },
+    { d: 25, n: "Gummy Bear Head", e: 30 },
+    { d: 30, n: "Candy Cane", e: 40  },
+    { d: 45, n: "Fallen Ice Cream", e: 60  },
+    { d: 70, n: "Piece of Chocolate", e: 100  }
 ];
 
 const SOUNDS = {

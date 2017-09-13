@@ -1,7 +1,7 @@
 const TEXTS = {
     scoutFound: "<div><p>You sent <b>%1</b> ants to scout a radius of <b>%2m</b> after food:</p><p class=\"msghighlight\">You've found <b>%3</b>. There's about (e) <b>%4</b> energy in this resource.</p><p>How many ants do you wish to send to pick the resource?</p></div>",
     hatchResults: "<p>You successfully hatched <b>%1</b> eggs!</p>",
-    buildRoomPrompt: "<p>To build another room in the colony you'll need <b>%1</b> energy and <b>%2</b> ants to complete in about <b>%3</b> days.</p>",
+    buildRoomPrompt: "<p>To build another cell in the colony you'll need <b>%1</b> energy and <b>%2</b> ants to complete in about <b>%3</b> days.</p>",
     buildRoomError: "<p class=\"msgerror\">Ops, you can't do that right now.</p>",
     buildRoomResult: "<p class=\"msghighlight\">You successfully built another room in your colony.</p>",
     infoWidgetEnergy: "<div><span>0</span><span>ENERGY</span></div>",

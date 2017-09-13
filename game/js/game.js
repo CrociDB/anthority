@@ -162,13 +162,13 @@ class Game {
 
         if (e > this.energy || a > this.ants) {
             const txt = "<div>"+ TEXTS.buildRoomError + repltxt(TEXTS.buildRoomPrompt, [e, a, t]) + "</div>";
-            showDialogOk("Error: Build Room", txt, () => {});
+            showDialogOk("Error: Build Cell", txt, () => {});
         } else {
             let info = new InfoWidget(this.time, 
                 this.balance.time_build_room,
                 this.balance.value_room_energy.bind(null, this.map.ownedRooms));
 
-            showDialogWidget("Build Room", repltxt(TEXTS.buildRoomPrompt, [e, a, t]),
+            showDialogWidget("Build Cell", repltxt(TEXTS.buildRoomPrompt, [e, a, t]),
             [info],
             this.buildRoom.bind(this, e, a, t));
         }

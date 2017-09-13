@@ -7,7 +7,7 @@ const TEXTS = {
     infoWidgetEnergy: "<div><span>0</span><span>ENERGY</span></div>",
     infoWidgetHours: "<div><span>0</span><span>HOURS</span></div>",
     infoWidgetDays: "<div><span>0</span><span>DAYS</span></div>",
-    infoWidget: "<div>Cost</div>",
+    infoWidget: "<div class=\"infowidgettitle\">Cost</div>",
     energyError: "<p class=\"msgerror\">Seems like you don't have enough energy for that.</p>",
     sufferAttack: "<p class=\"msgerror\">Oh! You let your defenses down and suffered an attack!</p>",
 };
@@ -49,7 +49,5 @@ const MAP_COLUMNS = 7;
 const MAP = [
     [{c: 3}],
     [{c: 1, l: [0]}, {c: 5, l: [0]}],
-    [{c: 2, l: [ 1, 2]}, {c: 6, l: [2]}],
-    // [{c: 0, l: [3]}, {c: 2, l: [3]}, {c: 4, l: [4]}, {c: 6, l: [4]}],
-    // [{c: 1}, {c: 4}]
+    [{c: 2, l: [ 1, 2]}, {c: 6, l: [2]}]
 ];

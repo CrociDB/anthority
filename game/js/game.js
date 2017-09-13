@@ -27,6 +27,10 @@ class Game {
         this.labelHour = gId("hour");
         this.labelDay = gId("day");
 
+        this.labelAvCells = gId("avcells");
+        this.labelCells = gId("cells");
+        this.labelCapacity = gId("capacity");
+
         this.statusContainer = qSel("#status ul");
     
         this.actionFindFood.onclick = this.doFindFood.bind(this);
@@ -78,6 +82,10 @@ class Game {
         this.labelEnergy.innerText = this.energy;
         this.labelAnts.innerText = this.ants;
         this.labelDefense.innerText = Math.ceil(this.defense * 100) + "%";
+
+        this.labelAvCells.innerText = this.map.map.length;
+        this.labelCells.innerText = this.map.ownedRooms;
+        this.labelCapacity.innerText = this.map.capacity();
         
         this.header.classList.remove("hhighlight");
         this.header.offsetWidth;

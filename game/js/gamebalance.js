@@ -35,7 +35,7 @@ class GameBalance {
 
     // Value calcs
     value_room_energy(rooms) {
-        return 40 + (rooms - 1) * 20;
+        return 30 + (rooms - 1) * 10;
     }
 
     value_room_ants(rooms) {

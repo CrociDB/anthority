@@ -183,6 +183,10 @@ a:hover {
         height: 0;
         margin-bottom: 0;
     }
+
+    #right {
+        margin-top: 10px;
+    }
 }
 
 /* Buttons */

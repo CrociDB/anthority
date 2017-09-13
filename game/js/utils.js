@@ -58,9 +58,7 @@ let audio_index = 0;
 let AUDIO = true;
 const playaudio = (a) => {
     if (AUDIO) {
-        // do {
-            audio_index = (audio_index + 1) % audio_player.length;
-        // } while (!audio_player[audio_index]);
+        audio_index = (audio_index + 1) % audio_player.length;
 
         audio_player[audio_index].pause();
         audio_player[audio_index].src = a;

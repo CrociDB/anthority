@@ -1,16 +1,23 @@
+const TIME_SCALE = 20.0; // Every time unit should multiply this
+const TIME_PACE = 20; // This is hours by minute
+const TIME_INTERVAL = 32;
+
+const ANTS_PER_CELL = 18;
+
 const TEXTS = {
     scoutFound: "<div><p>You sent <b>%1</b> ants to scout a radius of <b>%2m</b> after food:</p><p class=\"msghighlight\">You've found <b>%3</b>. There's about (e) <b>%4</b> energy in this resource.</p><p>How many ants do you wish to send to pick the resource?</p></div>",
     hatchResults: "<p>You successfully hatched <b>%1</b> eggs!</p>",
     buildRoomPrompt: "<p>To build another cell in the colony you'll need <b>%1</b> energy and <b>%2</b> ants to complete in about <b>%3</b> days.</p>",
     hatchEggError: "<p>You don't have enough space in your colony to hatch more eggs.</p>",
     defaultError: "<p class=\"msgerror\">Ops, you can't do that right now.</p>",
-    buildRoomResult: "<p class=\"msghighlight\">You successfully built another room in your colony.</p>",
+    buildRoomResult: "<p class=\"msghighlight\">You just built another cell in your colony. You can now accomodate <b>%1</b> ants.</p>",
     infoWidgetEnergy: "<div><span>0</span><span>ENERGY</span></div>",
     infoWidgetHours: "<div><span>0</span><span>HOURS</span></div>",
     infoWidgetDays: "<div><span>0</span><span>DAYS</span></div>",
     infoWidget: "<div class=\"infowidgettitle\">Cost</div>",
     energyError: "<p class=\"msgerror\">Seems like you don't have enough energy for that.</p>",
     sufferAttack: "<p class=\"msgerror\">Oh! You let your defenses down and suffered an attack!</p>",
+    builtCell: "<p></p>",
 };
 
 const MESSAGE_INTRO = [
@@ -26,6 +33,16 @@ const MESSAGE_GAMEOVER = [
     ["Oh! I believed you and you failed us again.", 4],
     ["I really don't know what to say... I trusted you.", 3],
     ["I think that's it. <b><a href=\"http://bruno.croci.me\">CrociDB</a></b> thanks you for playing this anyway.", 3],
+];
+
+const MESSAGE_WIN = [
+    ["Oh! I knew I should trust you!", 5],
+    ["You really saved us, made our colony grow again, but... Erm...", 4],
+    ["I'm not sure how to tell you that, but...", 4],
+    ["well...", 4],
+    ["You're not real. You didn't die. You're just an AI I created, beucase machines are better with management than ants are.", 6],
+    ["I'll be shutting you down now.", 5],
+    ["Ah, I forgot: <b><a href=\"http://bruno.croci.me\">CrociDB</a></b> thanks you for playing this anyway.", 3],
 ];
 
 const PLACES = [
@@ -46,11 +63,12 @@ const SOUNDS = {
     attack: jsfxr([3,0.1,0.18,0.4024,0.72,0.14,,,,,,-0.1928,0.7063,,,0.5103,0.0235,-0.2935,1,,,,,0.5]),
     action_open: jsfxr([3,0.12,0.1155,0.4985,0.08,0.0844,,0.2071,,,,,,,,,,,0.76,,,,,0.5]),
     action_close: jsfxr([3,0.12,0.1155,0.4985,0.08,0.0844,,0.12,,,,,,,,,,,0.76,,,,,0.5]),
+    built_cell: jsfxr([0,0.21,0.2491,,0.3617,0.2314,,0.2303,,0.47,0.1,,,0.5499,,,0.4599,-0.4,1,0.02,,,,0.4]),
 };
 
 const MAP_COLUMNS = 7;
 const MAP = [
     [{c: 3}],
     [{c: 1, l: [0]}, {c: 5, l: [0]}],
-    [{c: 2, l: [ 1, 2]}, {c: 6, l: [2]}]
+    [{c: 2, l: [ 1, 2]}]
 ];

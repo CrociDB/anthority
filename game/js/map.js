@@ -33,7 +33,15 @@ class Map {
     }
 
     capacity() {
-        return this.ownedRooms * 18;
+        return this.ownedRooms * ANTS_PER_CELL;
+    }
+
+    nextcapacity() {
+        return (this.ownedRooms + 1) * ANTS_PER_CELL;
+    }
+
+    completed() {
+        return this.ownedRooms == this.map.length;
     }
 
     buildRoom() {

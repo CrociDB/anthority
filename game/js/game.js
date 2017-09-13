@@ -95,6 +95,10 @@ class Game {
             if (this.energy == 0 && !this.hasProgress()) {
                 this.sufferAttack();
             }
+
+            if (this.map.completed()) {
+                this.winGame();
+            }
         }
     }
     
@@ -133,6 +137,19 @@ class Game {
             yield 1.5;
             game.hide();
             messenger.playGameOver();
+            yield .1;
+            fadeIn();
+        });
+    }
+
+    winGame() {
+        this.alive = false;
+        
+        co(function*() {
+            fadeOut();
+            yield 1.5;
+            game.hide();
+            messenger.playWinGame();
             yield .1;
             fadeIn();
         });
@@ -317,11 +334,13 @@ class Game {
     }
 
     placeRoom(ants) {
-        showDialogOk("Build Room", TEXTS.buildRoomResult, (() => {
+        showDialogOk("Build Room", repltxt(TEXTS.buildRoomResult, [this.map.nextcapacity()]), (() => {
+            this.map.buildRoom();
             this.ants += ants;
             this.enableButton(this.actionBuildRoom);
-            this.map.buildRoom();
             this.update();
+            playaudio(SOUNDS.built_cell);
+            this.checkGameStatus();
         }).bind(this));
 
         this.update();

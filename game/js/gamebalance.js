@@ -35,11 +35,11 @@ class GameBalance {
 
     // Value calcs
     value_room_energy(rooms) {
-        return 30 + (rooms - 1) * 10;
+        return 1;//30 + (rooms - 1) * 10;
     }
 
     value_room_ants(rooms) {
-        return 10 + (rooms - 1) * 10;
+        return 1;//10 + (rooms - 1) * 10;
     }
 
     // Evaluations

@@ -325,7 +325,7 @@ class Game {
             this.total_ants += r.eggsHatched;
             this.enableButton(this.actionHatchEggs);
             this.update();
-        }).bind(this));
+        }).bind(this), false);
 
         this.update();
     }
@@ -340,7 +340,7 @@ class Game {
             this.total_ants -= r.lostants;
             this.energy += r.energy;
             this.update();
-        }).bind(this));
+        }).bind(this), false);
     }
 
     placeRoom(ants) {
@@ -351,7 +351,7 @@ class Game {
             this.update();
             playaudio(SOUNDS.built_cell);
             this.checkGameStatus();
-        }).bind(this));
+        }).bind(this), false);
 
         this.update();
     }

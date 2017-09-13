@@ -25,7 +25,7 @@ let dialog = {
     checkQueue() {
         if (this.dialogQueue.length > 0) {
             var d = this.dialogQueue.pop();
-            createDialogOk(d.title, d.section, d.okCallback);
+            createDialogOk(d.title, d.section, d.okCallback, d.cancel);
         }
     },
     flush() {
@@ -35,7 +35,7 @@ let dialog = {
     dialogQueue: []
 };
 
-const showDialogWidget = (title, section, widgets, okCallback, bottom = true) => {
+const showDialogWidget = (title, section, widgets, okCallback, bottom = true, cancel = true) => {
     let sections = [];
     widgets.forEach(o => sections.push(o.elem));
     
@@ -46,21 +46,21 @@ const showDialogWidget = (title, section, widgets, okCallback, bottom = true) =>
     }
 
     if (dialog.active) {
-        dialog.dialogQueue.push({ title: title, section: sections, okCallback: okCallback.bind(null, widgets) });
+        dialog.dialogQueue.push({ title: title, section: sections, okCallback: okCallback.bind(null, widgets), cancel });
     } else {
-        createDialogOk(title, sections, okCallback.bind(null, widgets));
+        createDialogOk(title, sections, okCallback.bind(null, widgets), cancel);
     }
 };
 
-const showDialogOk = (title, section, okCallback) => {
+const showDialogOk = (title, section, okCallback, cancel = true) => {
     if (dialog.active) {
-        dialog.dialogQueue.push({ title: title, section: section, okCallback: okCallback });
+        dialog.dialogQueue.push({ title: title, section: section, okCallback: okCallback, cancel: cancel });
     } else {
-        createDialogOk(title, section, okCallback);
+        createDialogOk(title, section, okCallback, cancel);
     }
 };
 
-const createDialogOk = (title, section, okCallback) => {
+const createDialogOk = (title, section, okCallback, cancel) => {
     dialog.title.innerHTML = title;
 
     if (typeof section === "string") {
@@ -68,6 +68,12 @@ const createDialogOk = (title, section, okCallback) => {
     } else {
         dialog.section.innerHTML = "";
         section.forEach(s => dialog.section.appendChild(s));
+    }
+
+    if (cancel) {
+        dialog.cancel.classList.remove("hidden");
+    } else {
+        dialog.cancel.classList.add("hidden");
     }
 
     dialog.onOk = function () {

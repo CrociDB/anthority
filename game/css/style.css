@@ -107,7 +107,6 @@ a:hover {
 
 .column {
     width: 100%;
-    margin-top: 10px;    
 }
 
 .column:first-child {
@@ -163,6 +162,26 @@ a:hover {
 
     .widget-clear {
         margin-right: 0;    
+    }
+}
+
+/* Collapsed actions */
+
+.column a:last-child {
+    margin-bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .actions {
+        height: 180px;
+        transition: transform 150ms ease-in-out, height 150ms ease-in-out, margin 150ms ease-in-out;
+        margin-bottom: 10px;
+    }
+
+    .collapse {
+        transform: scaleY(0) translateY(-100%) !important;
+        height: 0;
+        margin-bottom: 0;
     }
 }
 
@@ -361,7 +380,7 @@ a:hover {
     display: block;
     padding-right: 10px;
     padding-left: 10px;
-    border-left: 1px solid #67A9C7;
+    border-left: 1px solid #58AE9E;
     float: right;
 }
 

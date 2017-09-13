@@ -5,6 +5,8 @@ class Game {
         this.defense = 1.0;
         this.alive = true;
 
+        this.actionMenu = true;
+
         this.balance = new GameBalance();
         this.time = new TimeSchedule();
         this.time.addUpdateCallback(this.timeUpdate.bind(this));
@@ -32,12 +34,35 @@ class Game {
         this.labelCapacity = gId("capacity");
 
         this.statusContainer = qSel("#status ul");
+        this.mapContainer = gId("map");
+        this.actionsContainer = gId("actions");
     
         this.actionFindFood.onclick = this.doFindFood.bind(this);
         this.actionHatchEggs.onclick = this.doHatchEggs.bind(this);
         this.actionBuildRoom.onclick = this.doBuildRoom.bind(this);
 
+        this.mapContainer.onclick = this.toggleActions.bind(this, true);
+
         this.update();
+    }
+
+    toggleActions(close = false) {
+        if (this.actionMenu) {
+            this.actionMenu = false;
+            this.actionsContainer.classList.add("collapse");
+            
+            if (close && window.matchMedia("(max-width: 768px)").matches) {
+                playaudio(SOUNDS.action_close);
+            }
+
+        } else {
+            this.actionMenu = true;
+            this.actionsContainer.classList.remove("collapse");
+
+            if (window.matchMedia("(max-width: 768px)").matches) {
+                playaudio(SOUNDS.action_open);
+            }
+        }
     }
 
     hide() {
@@ -135,6 +160,8 @@ class Game {
 
     // Actions
     doFindFood() {
+        this.toggleActions();
+
         let dist = new Range(10, 100, 5, "Distance");
         let ants = new Range(1, this.ants, 1, "Scouts");
         let info = new InfoWidget(this.time, 
@@ -146,6 +173,8 @@ class Game {
     }
     
     doHatchEggs() {
+        this.toggleActions();
+
         let eggs = new Range(1, this.ants, 1, "Eggs");
         let info = new InfoWidget(this.time, 
             this.balance.time_hatch_egg.bind(null, eggs),
@@ -156,6 +185,8 @@ class Game {
     }
     
     doBuildRoom() {
+        this.toggleActions();
+
         const e = this.balance.value_room_energy(this.map.ownedRooms);
         const a = this.balance.value_room_ants(this.map.ownedRooms);
         const t = Math.floor(this.balance.time_build_room() / 24);

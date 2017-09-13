@@ -3,9 +3,9 @@ let game = new Game();
 let messenger = new Messenger();
 
 (function() {
-    // menu.play();
+    menu.play();
     // messenger.playIntro();
-    game.play();
+    // game.play();
 
     document.addEventListener("contextmenu", event => event.preventDefault());
 })();

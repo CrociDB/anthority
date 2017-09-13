@@ -1,4 +1,4 @@
-const TIME_SCALE = 20.0; // Every time unit should multiply this
+const TIME_SCALE = 2.0; // Every time unit should multiply this
 const TIME_PACE = 30; // This is hours by minute
 const TIME_INTERVAL = 32;
 
@@ -26,14 +26,16 @@ const MESSAGE_INTRO = [
     ["Ok, I know you might be lost now. But I'll explain...", 2],
     ["I don't know how to tell you that, but... you went mad. You led your colony to ashes.", 4],
     ["All the ants died a terrible death when the <b>War</b> came, you couldn't protect your own ants.", 6],
-    ["I managed to create this virtual interface for you so you can control our colony once again.", 5],
-    ["Remember to", 5],
+    ["So I managed to create this virtual interface for you so you can control our colony once again.", 5],
+    ["You just have to <b>Send Ant Scouts</b> after food, then send some ants to <b>Fetch the Resources</b> found in form of <b>Energy</b>. Focus on <b>Building more Cells</b> on the colony. You'll probably need to <b>Hatch some Eggs</b> to populate your colony.", 9],
+    ["Please don't let your defenses down, keep always some ants in the colony to protect it in case of an invasion.", 5],
+    ["Well, I trust you!", 4],
 ];
 
 const MESSAGE_GAMEOVER = [
     ["Oh! I believed you and you failed us again.", 4],
-    ["I really don't know what to say... I trusted you.", 3],
-    ["I think that's it. <b><a href=\"http://bruno.croci.me\">CrociDB</a></b> thanks you for playing this anyway.", 3],
+    ["I really don't know what to say... I trusted you. I might give you another chance.", 3],
+    ["<b><a href=\"http://bruno.croci.me\">CrociDB</a></b> thanks you for playing this anyway.", 2],
 ];
 
 const MESSAGE_WIN = [

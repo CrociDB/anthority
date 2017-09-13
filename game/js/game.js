@@ -226,7 +226,7 @@ class Game {
                 this.balance.time_build_room,
                 this.balance.value_room_energy.bind(null, this.map.ownedRooms));
 
-            showDialogWidget("Build Cell", repltxt(TEXTS.buildRoomPrompt, [e, a, t]),
+            showDialogWidget("Build Cell", repltxt(TEXTS.buildRoomPrompt, [e, a, this.balance.time_build_room()]),
             [info],
             this.buildRoom.bind(this, e, a, t));
         }
@@ -365,7 +365,7 @@ class Game {
         if (energy > this.energy) {
             showDialogOk("Error", TEXTS.energyError, () => {});
         } else {
-            let progress = new Progress(this.time, "Bringing Resources", 
+            let progress = new Progress(this.time, "Fetching Resources", 
                 this.balance.time_get_food(v.dist, ants, v.energy),
                 this.evaluateResources.bind(this, v));
             this.addProgress(progress);

@@ -161,7 +161,7 @@ a:hover {
     }
 
     .widget-clear {
-        margin-right: 0;    
+        margin-right: 0;
     }
 }
 
@@ -181,7 +181,7 @@ a:hover {
     .collapse {
         transform: scaleY(0) translateY(-100%) !important;
         height: 0;
-        margin-bottom: 0;
+        margin-bottom: -10px;
     }
 
     #right {

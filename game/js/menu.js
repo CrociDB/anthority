@@ -25,7 +25,7 @@ class Menu {
         co((function*() {
             yield .2;
             fadeOut();
-            yield 1;
+            yield 2;
             this.hide();
             messenger.playIntro();
             yield .1;

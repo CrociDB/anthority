@@ -331,9 +331,16 @@ class Game {
     }
 
     evaluateResources(v) {
-        this.ants += v.ants;
-        this.energy += v.source.e;
-        this.update();
+        const r = this.balance.evaluateResources(v);
+
+        const lostAntsText = r.lostants > 0 ? repltxt(TEXTS.lostAnts, [r.lostants]) : "";
+
+        showDialogOk("Resource Fetching", repltxt(TEXTS.fetchedResources, [r.energy, lostAntsText]), (() => {
+            this.ants += r.ants;
+            this.total_ants -= r.lostants;
+            this.energy += r.energy;
+            this.update();
+        }).bind(this));
     }
 
     placeRoom(ants) {

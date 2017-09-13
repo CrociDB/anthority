@@ -1,4 +1,4 @@
-const TIME_SCALE = 10.0; // Every time unit should multiply this
+const TIME_SCALE = 20.0; // Every time unit should multiply this
 const TIME_PACE = 30; // This is hours by minute
 const TIME_INTERVAL = 32;
 
@@ -17,7 +17,8 @@ const TEXTS = {
     infoWidget: "<div class=\"infowidgettitle\">Cost</div>",
     energyError: "<p class=\"msgerror\">Seems like you don't have enough energy for that.</p>",
     sufferAttack: "<p class=\"msgerror\">Oh! You let your defenses down and suffered an attack!</p>",
-    builtCell: "<p></p>",
+    fetchedResources: "<div><p>Your ants successfully fetched <b>%1</b> energy in the resource.</p>%2</div>",
+    lostAnts: "<p class=\"msgerror\">However, <b>%1</b> ants got lost.</p>",
 };
 
 const MESSAGE_INTRO = [

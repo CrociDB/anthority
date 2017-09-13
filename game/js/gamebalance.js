@@ -35,11 +35,11 @@ class GameBalance {
 
     // Value calcs
     value_room_energy(rooms) {
-        return 1;//30 + (rooms - 1) * 10;
+        return 30 + (rooms - 1) * 10;
     }
 
     value_room_ants(rooms) {
-        return 1;//10 + (rooms - 1) * 10;
+        return 10 + (rooms - 1) * 10;
     }
 
     // Evaluations
@@ -49,19 +49,28 @@ class GameBalance {
 
         let places = PLACES.filter(p => p.d <= totaldist);
         let place = randweightsqrd(places, p => p.d);
+        
+        return {
+            dist: dist,
+            ants: ants,
+            source: place,
+            energy: Math.floor(place.e + (randnum(place.e * .2) * randsig()))
+        };
+    }
 
+    evaluateResources(v) {
         let lostants = 0;
-        if (randnum() < .03)
+        if (randnum() < .6)
         {
-            lostants++;
+            lostants = randint(v.ants * .6);
         }
 
         return {
-            dist: dist,
-            ants: ants - lostants,
+            dist: v.dist,
+            ants: v.ants - lostants,
             lostants: lostants,
-            source: place,
-            energy: Math.floor(place.e + (randnum(place.e * .2) * randsig()))
+            source: v.source,
+            energy: v.energy
         };
     }
 

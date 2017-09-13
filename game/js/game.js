@@ -92,7 +92,7 @@ class Game {
                 }
             } 
             
-            if (this.energy == 0 && !this.hasProgress()) {
+            if (this.energy == 0 && !this.hasProgress() && !dialog.active) {
                 this.sufferAttack();
             }
 
@@ -335,10 +335,11 @@ class Game {
 
         const lostAntsText = r.lostants > 0 ? repltxt(TEXTS.lostAnts, [r.lostants]) : "";
 
+        this.energy += r.energy;
+
         showDialogOk("Resource Fetching", repltxt(TEXTS.fetchedResources, [r.energy, lostAntsText]), (() => {
             this.ants += r.ants;
             this.total_ants -= r.lostants;
-            this.energy += r.energy;
             this.update();
         }).bind(this), false);
     }

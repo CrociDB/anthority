@@ -1,7 +1,7 @@
 class Game {
     constructor() {
         this.energy = 10;
-        this.ants = 10;
+        this.ants = this.total_ants = 10;
         this.defense = 1.0;
         this.alive = true;
 
@@ -175,13 +175,20 @@ class Game {
     doHatchEggs() {
         this.toggleActions();
 
-        let eggs = new Range(1, this.ants, 1, "Eggs");
-        let info = new InfoWidget(this.time, 
-            this.balance.time_hatch_egg.bind(null, eggs),
-            this.balance.energy_hatch_egg.bind(null, eggs));
+        const maxEggs = Math.min(this.ants, (this.map.capacity() - this.total_ants));
 
-        showDialogWidget("Hatch Eggs", "<div><p>How many eggs you want to hatch?</p></div>", 
-        [eggs, info], this.hatchEggs.bind(this));
+        if (maxEggs <= 0) {
+            const txt = "<div>"+ TEXTS.defaultError + TEXTS.hatchEggError + "</div>";
+            showDialogOk("Error: Hatch Eggs", txt, () => {});
+        } else {
+            let eggs = new Range(1, maxEggs, 1, "Eggs");
+            let info = new InfoWidget(this.time, 
+                this.balance.time_hatch_egg.bind(null, eggs),
+                this.balance.energy_hatch_egg.bind(null, eggs));
+    
+            showDialogWidget("Hatch Eggs", "<div><p>How many eggs you want to hatch?</p></div>", 
+            [eggs, info], this.hatchEggs.bind(this));
+        }
     }
     
     doBuildRoom() {
@@ -192,7 +199,7 @@ class Game {
         const t = Math.floor(this.balance.time_build_room() / 24);
 
         if (e > this.energy || a > this.ants) {
-            const txt = "<div>"+ TEXTS.buildRoomError + repltxt(TEXTS.buildRoomPrompt, [e, a, t]) + "</div>";
+            const txt = "<div>"+ TEXTS.defaultError + repltxt(TEXTS.buildRoomPrompt, [e, a, t]) + "</div>";
             showDialogOk("Error: Build Cell", txt, () => {});
         } else {
             let info = new InfoWidget(this.time, 
@@ -295,6 +302,7 @@ class Game {
 
         showDialogOk("Hatch Eggs", repltxt(TEXTS.hatchResults, [r.eggsHatched]), (() => {
             this.ants += r.ants + r.eggsHatched;
+            this.total_ants += r.eggsHatched;
             this.enableButton(this.actionHatchEggs);
             this.update();
         }).bind(this));

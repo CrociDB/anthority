@@ -33,7 +33,7 @@ class Map {
     }
 
     capacity() {
-        return this.ownedRooms * 15;
+        return this.ownedRooms * 18;
     }
 
     buildRoom() {

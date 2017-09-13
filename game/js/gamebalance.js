@@ -5,15 +5,15 @@ class GameBalance {
 
     // Time calcs
     time_find_food(dist, ants) {
-        return 1 + ((dist.val * .4) / Math.max(ants.val * .3, .5));
+        return 1 + ((dist.val * .5) / Math.max(ants.val * .3, .5));
     } 
 
     time_get_food(dist, ants, energy) {
-        return (dist * (1 / ants.val)) * (energy / (ants.val * 5));
+        return (dist * (1.3 / ants.val)) * (energy / (ants.val * 5));
     } 
 
     time_hatch_egg(eggs) {
-        return 48 + eggs.val * 12;
+        return 38 + eggs.val * 12;
     }
 
     time_build_room() {

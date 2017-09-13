@@ -6,4 +6,6 @@ let messenger = new Messenger();
     // menu.play();
     // messenger.playIntro();
     game.play();
+
+    document.addEventListener("contextmenu", event => event.preventDefault());
 })();

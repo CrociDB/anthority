@@ -24,11 +24,13 @@ class Range extends Widget{
     }
 
     less() {
+        playaudio(SOUNDS.range_change);
         this.val = clamp(this.val - this.step, this.min, this.max);
         this.update();
     }
     
     more() {
+        playaudio(SOUNDS.range_change);
         this.val = clamp(this.val + this.step, this.min, this.max);
         this.update();
     }
